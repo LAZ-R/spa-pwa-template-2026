@@ -1,4 +1,4 @@
-import { APP_NAME, APP_REPO_PREFIX } from "../../../app-properties.js";
+import { APP_NAME, APP_REPO_PREFIX, APP_VERSION } from "../../../app-properties.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { initMapLogic } from "../../services/map.service.js";
 import { getUser, setUser } from "../../services/storage.service..js";
@@ -19,7 +19,7 @@ export function render() {
   document.getElementById('header').innerHTML = `
     <div class="top-row">
       <a href="${APP_REPO_PREFIX}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
-      <span>${APP_NAME}</span>
+      <span>${APP_NAME} - ${APP_VERSION}</span>
       <a href="${APP_REPO_PREFIX}settings" class="lzr-button lzr-outlined lzr-square lzr-primary">${getSvgIcon('gear', 'm', 'var(--color--primary)')}</a>
     </div>
     <div class="bottom-row">
