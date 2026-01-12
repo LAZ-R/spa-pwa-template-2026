@@ -77,7 +77,7 @@ export function render() {
   `;
 
   // Set FOOTER layout
-  FOOTER = `
+  FOOTER.innerHTML = `
   <span style="display: flex; justify-content: center; align-items: center; gap: 8px;">
     <span>Copyright ©2025-${new Date().getFullYear()}</span>
     <a class="lzr-button lzr-flat lzr-primary" href="https://laz-r.github.io/store/" target="_blank">LAZ-R</a>

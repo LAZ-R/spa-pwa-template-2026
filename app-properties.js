@@ -1,10 +1,8 @@
 export const APP_NAME = "SPA PWA Template 2026";
-export const APP_VERSION = '0.0.0.2';
+export const APP_VERSION = '0.0.0.4';
 export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0001`;
 export const APP_REPO_PREFIX = new URL(location.href, location.origin).pathname == '' ? '/' : new URL(location.href, location.origin).pathname;
 
 // CHANGELOG
 
-// v 0.0.0.3 - clean fichiers + css léger
-// v 0.0.0.2 - fix get path
-// v 0.0.0.1 - init
+// v 0.0.0.4 - fix footer settings
