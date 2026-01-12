@@ -1,0 +1,1 @@
+# spa-pwa-template-2026
