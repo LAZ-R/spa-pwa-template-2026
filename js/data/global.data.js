@@ -1,0 +1,1 @@
+export const ROAD_BLOCK_PRICE = 150;
