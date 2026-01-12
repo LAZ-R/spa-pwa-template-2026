@@ -3,16 +3,13 @@
 // + View Transitions (optionnel)
 // ================================
 
-import { APP_REPO_PREFIX } from '../app-properties.js'
+import { APP_BASE_PATH } from '../app-properties.js'
 
 // Table de routes -> pour chaque chemin, on sait quel module ES charger.
 // Chaque module exporte une fonction: export function render() { ... }
 const routes = {
-  [`${APP_REPO_PREFIX}settings`]: () => import('./views/settings/settings.view.js'),
-  [`${APP_REPO_PREFIX}park`]:     () => import('./views/park/park.view.js'),
-  [`${APP_REPO_PREFIX}new-park`]: () => import('./views/new-park/new-park.view.js'),
-  [`${APP_REPO_PREFIX}`]:         () => import('./views/homepage/homepage.view.js'), // fallback racine
-  '/':         () => import('./views/homepage/homepage.view.js'), // fallback racine
+  [`${APP_BASE_PATH}settings`]: () => import('./views/settings/settings.view.js'),
+  [`${APP_BASE_PATH}`]:         () => import('./views/homepage/homepage.view.js'), // fallback racine
 };
 
 export async function renderURL(urlString) {
@@ -20,7 +17,6 @@ export async function renderURL(urlString) {
     // Convertit la string en URL pour extraire le pathname
     const url = new URL(urlString, location.href);
     const path = url.pathname;
-    console.log(path);
 
     // Sélectionne et charge le module de page (import dynamique)
     const loadPageModule = routes[path] || routes['/'];

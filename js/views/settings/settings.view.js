@@ -1,4 +1,4 @@
-import { APP_NAME, APP_REPO_PREFIX } from "../../../app-properties.js";
+import { APP_NAME, APP_BASE_PATH } from "../../../app-properties.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { getThemesDom } from "../../services/settings-service.js";
 import { getStorageDom, getUser, setUser } from "../../services/storage.service..js";
@@ -16,7 +16,7 @@ export function render() {
 
   // Set HEADER layout
   HEADER.innerHTML = `
-  <a href="${APP_REPO_PREFIX}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
+  <a href="${APP_BASE_PATH}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
   `;
 
   // Set MAIN layout
