@@ -4,7 +4,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     min-width: 100%; width: 100%; max-width: 100%;
     min-height: var(--height--main); height: var(--height--main); max-height: var(--height--main);

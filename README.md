@@ -1,20 +1,27 @@
-# SPA PWA template
-`v 0.0.0.2`
-
-## ...
-    
-...
-
-**[Tester](https://laz-r.github.io/spa-pwa-template-2026/)**
-
----
-
+# SPA PWA template 2026
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)  
 
-Copyright ©2026 LAZ-R - Tous droits réservés
+Version `0.0.0.3`
+
+**[Tester](https://laz-r.github.io/spa-pwa-template-2026/)**
+
+## Présentation
+    
+...
+
 
 ---
 
 This is mostly a *proof of concept* so the code here is awfull, I know.
+
+## Changelog
+
+- v 0.0.0.3 - clean fichiers + css léger
+- v 0.0.0.2 - fix get path
+- v 0.0.0.1 - init
+
+---
+
+Copyright ©2026 LAZ-R - Tous droits réservés

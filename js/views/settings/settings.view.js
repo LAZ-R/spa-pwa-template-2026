@@ -5,16 +5,32 @@ import { getStorageDom, getUser, setUser } from "../../services/storage.service.
 import { requestWakeLock } from "../../utils/wakelock.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
-
+const HEADER = document.getElementById('header');
 const MAIN = document.getElementById('main');
+const FOOTER = document.getElementById('footer');
 
 // FUNCTIONS //////////////////////////////////////////////////////////////////////////////////////
 
 export function render() {
-  let user = getUser()
+  let user = getUser();
+
+  // Set HEADER layout
+  HEADER.innerHTML = `
+  <a href="${APP_REPO_PREFIX}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
+  `;
+
+  // Set MAIN layout
   MAIN.innerHTML = `
-  <div class="homepage-container">
+  <div class="settings-container">
     <h1>Paramètres</h1>
+
+    <div class="setting-block">
+      <span>Conserver l'écran allumé</span>
+      <label class="switch">
+        <input type="checkbox" onclick="onKeepScreenAwakeClick(event)" ${user.KEEP_SCREEN_AWAKE ? 'checked' : ''} />
+        <span class="slider"></span>
+      </label>
+    </div>
 
     <div class="lzr-drawer lzr-margin-bottom">
       <div class="tile-header">
@@ -56,30 +72,17 @@ export function render() {
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="setting-block">
-      <span>Conserver l'écran allumé</span>
-      <label class="switch">
-        <input type="checkbox" onclick="onKeepScreenAwakeClick(event)" ${user.KEEP_SCREEN_AWAKE ? 'checked' : ''} />
-        <span class="slider"></span>
-      </label>
-    </div>
-
-    <span style="margin: auto; margin-bottom: 0">Copyright ©2025-${new Date().getFullYear()} <a class="lzr-button lzr-flat lzr-primary" href="https://laz-r.github.io/store/" target="_blank">LAZ-R</a></span>
+    </div>    
   </div>
   `;
 
-  document.getElementById('header').innerHTML = `
-    <div class="top-row">
-      <a href="${APP_REPO_PREFIX}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
-      <!-- <span>${APP_NAME}</span> -->
-      <a href="${APP_REPO_PREFIX}settings" class="lzr-button lzr-outlined lzr-square lzr-primary">${getSvgIcon('gear', 'm', 'var(--color--primary)')}</a>
-    </div>
-    <div class="bottom-row"></div>
+  // Set FOOTER layout
+  FOOTER = `
+  <span style="display: flex; justify-content: center; align-items: center; gap: 8px;">
+    <span>Copyright ©2025-${new Date().getFullYear()}</span>
+    <a class="lzr-button lzr-flat lzr-primary" href="https://laz-r.github.io/store/" target="_blank">LAZ-R</a>
+  </span>
   `;
-
-  document.getElementById('footer').innerHTML = ``;
 }
 
 function onKeepScreenAwakeClick(event) {

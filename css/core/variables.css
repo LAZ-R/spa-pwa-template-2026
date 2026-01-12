@@ -511,10 +511,10 @@
 
   /* header height */
   --height--header: if(
-    /* PHONE */ media(width < 767px):  calc((100svh - 100svw) / 2);
-    /* TABLET */media(width < 1280px): calc((100svh - 100svw) / 2);
-    /* LAPTOP */media(width < 1920px): calc((100svh - 100svw) / 2);
-    /* DESKTOP */ else:                calc((100svh - 100svw) / 2);
+    /* PHONE */ media(width < 767px):  54px;
+    /* TABLET */media(width < 1280px): 54px;
+    /* LAPTOP */media(width < 1920px): 54px;
+    /* DESKTOP */ else:                54px;
   );
 
 
@@ -524,10 +524,10 @@
 
   /* footer height */
   --height--footer: if(
-    /* PHONE */ media(width < 767px):  calc((100svh - 100svw) / 2);
-    /* TABLET */media(width < 1280px): calc((100svh - 100svw) / 2);
-    /* LAPTOP */media(width < 1920px): calc((100svh - 100svw) / 2);
-    /* DESKTOP */ else:                calc((100svh - 100svw) / 2);
+    /* PHONE */ media(width < 767px):  54px;
+    /* TABLET */media(width < 1280px): 54px;
+    /* LAPTOP */media(width < 1920px): 54px;
+    /* DESKTOP */ else:                54px;
   );
 
   /* ------------------------------------------------------------------------

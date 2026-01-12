@@ -5,4 +5,6 @@ export const APP_REPO_PREFIX = new URL(location.href, location.origin).pathname 
 
 // CHANGELOG
 
+// v 0.0.0.3 - clean fichiers + css léger
 // v 0.0.0.2 - fix get path
+// v 0.0.0.1 - init
