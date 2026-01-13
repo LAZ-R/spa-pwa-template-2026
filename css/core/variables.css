@@ -6,19 +6,19 @@
   /* ####################################################################### */
 
   --color--bg-default: if(
-    style(--theme: 'light'):       var(--color--bg-5);
+    style(--theme: 'light'):       var(--color--bg-10);
     style(--theme: 'dark'):        var(--color--bg-15);
     style(--theme: 'alternative'): var(--color--bg-15);
     else: #333333
   );
   --color--bg-default--hover: if(
-    style(--theme: 'light'):       var(--color--bg-10);
+    style(--theme: 'light'):       var(--color--bg-15);
     style(--theme: 'dark'):        var(--color--bg-20);
     style(--theme: 'alternative'): var(--color--bg-20); 
     else: #333333
   );
   --color--bg-default--active: if(
-    style(--theme: 'light'):       var(--color--bg-15);
+    style(--theme: 'light'):       var(--color--bg-20);
     style(--theme: 'dark'):        var(--color--bg-25);
     style(--theme: 'alternative'): var(--color--bg-25); 
     else: #333333
@@ -32,7 +32,7 @@
   );
 
   --color--bg-alt: if(
-    style(--theme: 'light'):       var(--color--bg-10);
+    style(--theme: 'light'):       var(--color--bg-5);
     style(--theme: 'dark'):        var(--color--bg-10);
     style(--theme: 'alternative'): var(--color--bg-10); 
     else: #333333
@@ -44,7 +44,7 @@
     else: #333333
   );
   --color--bg-alt--active: if(
-    style(--theme: 'light'):       var(--color--bg-20);
+    style(--theme: 'light'):       var(--color--bg-10);
     style(--theme: 'dark'):        var(--color--bg-20);
     style(--theme: 'alternative'): var(--color--bg-20); 
     else: #333333

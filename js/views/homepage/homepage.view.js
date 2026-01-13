@@ -1,5 +1,6 @@
 import { APP_NAME, APP_BASE_PATH, APP_VERSION } from "../../../app-properties.js";
 import { getSvgIcon } from "../../services/icons.service.js";
+import { showToast } from "../../services/toast.service.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
 const HEADER = document.getElementById('header');
@@ -41,10 +42,12 @@ export function render() {
       <nav class="lzr-list-menu">
         <span class="menu-title">Sections</span>
         <ul>
+          <li><a class="lzr-button lzr-flat" href="#header_block">Header</a></li>
           <li><a class="lzr-button lzr-flat" href="#button_block">Button</a></li>
           <li><a class="lzr-button lzr-flat" href="#link_block">Link button</a></li>
           <li><a class="lzr-button lzr-flat" href="#select_block">Select</a></li>
           <li><a class="lzr-button lzr-flat" href="#icon_block">Icône</a></li>
+          <li><a class="lzr-button lzr-flat" href="#radio_block">Radio button</a></li>
           <li><a class="lzr-button lzr-flat" href="#checkbox_block">Checkbox</a></li>
           <li><a class="lzr-button lzr-flat" href="#drawer_block">Tiroir</a></li>
         </ul>
@@ -52,7 +55,7 @@ export function render() {
 
       <hr class="lzr-separator horizontal">  <!-- ##################################################################################### -->
 
-      <h2 id="button_block">Headers</h2>
+      <h2 id="headers_block">Header</h2>
       <h1>Header h1</h1>
       <h2>Header h2</h2>
       <h3>Header h3</h3>
@@ -145,11 +148,11 @@ export function render() {
       <h3>Solid</h3>
       <h4>Default</h4>
       <div class="lzr-row-wrap lzr-margin-bottom">
-        <button class="lzr-button lzr-solid">solid</button>
-        <button class="lzr-button lzr-solid lzr-primary">solid primary</button>
-        <button class="lzr-button lzr-solid lzr-success">solid success</button>
-        <button class="lzr-button lzr-solid lzr-info">solid info</button>
-        <button class="lzr-button lzr-solid lzr-error">solid error</button>
+        <button class="lzr-button lzr-solid" onclick="showToast('', 'Vous avez cliqué sur un élément interactif')">solid</button>
+        <button class="lzr-button lzr-solid lzr-primary" onclick="showToast('lzr-primary', 'Vous avez cliqué sur un élément interactif')">solid primary</button>
+        <button class="lzr-button lzr-solid lzr-success" onclick="showToast('lzr-success', 'Vous avez cliqué sur un élément interactif')">solid success</button>
+        <button class="lzr-button lzr-solid lzr-info" onclick="showToast('lzr-info', 'Vous avez cliqué sur un élément interactif')">solid info</button>
+        <button class="lzr-button lzr-solid lzr-error" onclick="showToast('lzr-error', 'Vous avez cliqué sur un élément interactif')">solid error</button>
       </div>
       <h4>pill</h4>
       <div class="lzr-row-wrap lzr-margin-bottom">
@@ -784,9 +787,45 @@ export function render() {
 
       <hr class="lzr-separator horizontal"> <!-- ##################################################################################### -->
 
+      <h2 id="radio_block">Radio button</h2>
+
+      <div class="lzr-radio-group">
+        <div class="lzr-radio-raw">
+          <input type="radio" class="lzr-radio" id="radioOption1" name="theme" value="radioOption1" checked />
+          <label for="radioOption1">Option 1</label>
+        </div>
+
+        <div class="lzr-radio-raw">
+          <input type="radio" class="lzr-radio" id="radioOption2" name="theme" value="radioOption2" />
+          <label for="radioOption2">Option 2</label>
+        </div>
+
+        <div class="lzr-radio-raw">
+          <input type="radio" class="lzr-radio" id="radioOption3" name="theme" value="radioOption3" />
+          <label for="radioOption3">Option 3</label>
+        </div>
+      </div>
+
+      <hr class="lzr-separator horizontal"> <!-- ##################################################################################### -->
+
       <h2 id="checkbox_block">Checkbox</h2>
 
-      <input type="checkbox" class="lzr-checkbox">
+      <div class="lzr-checkbox-group">
+        <div class="lzr-checkbox-raw">
+          <input type="checkbox" class="lzr-checkbox" id="checkboxOption1" name="theme" value="checkboxOption1" checked />
+          <label for="checkboxOption1">Option 1</label>
+        </div>
+
+        <div class="lzr-checkbox-raw">
+          <input type="checkbox" class="lzr-checkbox" id="checkboxOption2" name="theme" value="checkboxOption2" />
+          <label for="checkboxOption2">Option 2</label>
+        </div>
+
+        <div class="lzr-checkbox-raw">
+          <input type="checkbox" class="lzr-checkbox" id="checkboxOption3" name="theme" value="checkboxOption3" />
+          <label for="checkboxOption3">Option 3</label>
+        </div>
+      </div>
 
       <hr class="lzr-separator horizontal">  <!-- ##################################################################################### -->
 

@@ -1,6 +1,6 @@
-import { APP_NAME, APP_BASE_PATH } from "../../../app-properties.js";
+import { APP_BASE_PATH } from "../../../app-properties.js";
 import { getSvgIcon } from "../../services/icons.service.js";
-import { getThemesDom } from "../../services/settings-service.js";
+import { onThemeClick } from "../../services/settings-service.js";
 import { getStorageDom, getUser, setUser } from "../../services/storage.service.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,22 @@ export function render() {
         <div class="expandable-inner">
           <div class="inner-body">
             <div id="themesContainer" class="themes-container">
-              ${getThemesDom()}
+              <div class="lzr-radio-group">
+                <div class="lzr-radio-raw" onclick="onThemeClick('dark')">
+                  <input type="radio" class="lzr-radio" id="dark" name="theme" value="dark" ${user.PREFERED_THEME == 'dark' ? 'checked' : ''} />
+                  <label for="dark">Sombre</label>
+                </div>
+
+                <div class="lzr-radio-raw" onclick="onThemeClick('light')">
+                  <input type="radio" class="lzr-radio" id="light" name="theme" value="light" ${user.PREFERED_THEME == 'light' ? 'checked' : ''} />
+                  <label for="light">Clair</label>
+                </div>
+
+                <div class="lzr-radio-raw" onclick="onThemeClick('alternative')">
+                  <input type="radio" class="lzr-radio" id="alternative" name="theme" value="alternative" ${user.PREFERED_THEME == 'alternative' ? 'checked' : ''} />
+                  <label for="alternative">Alternatif</label>
+                </div>
+              </div>
             </div>
           </div>
         </div>

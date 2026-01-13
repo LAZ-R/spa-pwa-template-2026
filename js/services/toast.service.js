@@ -3,11 +3,11 @@ import { getSvgIcon } from "./icons.service.js";
 
 const toastContainerDom = document.getElementById('toastContainer');
 
-export const showToast = (toastClass, message, duration = 2000) => {
+export const showToast = (toastClass, message, duration = 2500) => {
   if (document.getElementById('toast') === null) {
     let toastStr = `
     <div id="toast" class="lzr-toast ${toastClass}">
-    ${getSvgIcon(toastClass === 'success' ? 'circle-check' : toastClass === 'info' ? 'circle-info' : toastClass === 'error' ? 'circle-exclamation' : 'circle-info', 'm',  'var(--color--fg-0')}
+    ${getSvgIcon(toastClass === 'lzr-success' ? 'circle-check' : toastClass === 'lzr-info' ? 'circle-info' : toastClass === 'lzr-error' ? 'circle-exclamation' : 'circle-info', 'm',  'var(--color--fg-0')}
       <span>${message}</span>
     </div>`;
     toastContainerDom.style.display = 'flex';
@@ -22,3 +22,4 @@ export const showToast = (toastClass, message, duration = 2000) => {
     }, duration);
   }
 }
+window.showToast = showToast;

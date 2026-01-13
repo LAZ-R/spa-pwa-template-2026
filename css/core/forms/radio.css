@@ -18,8 +18,8 @@
       padding: 8px;
 
       @media (pointer: fine) {
+        cursor: pointer;
         &:hover {
-          cursor: pointer;
           background-color: var(--color--bg-default--hover);
         }
       }
@@ -47,6 +47,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    margin: 0;
 
     border-radius: 50%;
     min-width: var(--size); width: var(--size); max-width: var(--size);
@@ -59,6 +60,10 @@
 
     &:checked {
       border: 8px solid var(--color--primary);
+    }
+
+    @media (pointer: fine) {
+      cursor: pointer;
     }
   }
 
