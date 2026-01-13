@@ -1,4 +1,5 @@
 import { APP_NAME, APP_VERSION } from "../../../app-properties.js";
+import { ICONS } from "../../data/svgIcons.data.js";
 import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { showToast } from "../../services/toast.service.js";
@@ -577,143 +578,8 @@ export function render() {
       <h2 id="icon_block">Icône</h2>
 
       <h3>Icônes disponibles</h3>
-      <div class="lzr-icon-block">
-        ${getSvgIcon('lzr')}
-        <span>lzr</span>
-      </div>
-      <h4>UI basique</h4>
-      <div class="lzr-row-wrap lzr-margin-bottom">
-        <div class="lzr-icon-block">
-          ${getSvgIcon('list')}
-          <span>list</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('heart')}
-          <span>heart</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('heart-empty')}
-          <span>heart-empty</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('chart-simple')}
-          <span>chart-simple</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('circle-check')}
-          <span>circle-check</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('circle-info')}
-          <span>circle-info</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('circle-exclamation')}
-          <span>circle-exclamation</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('clock')}
-          <span>clock</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('gear')}
-          <span>gear</span>
-        </div>
-      </div>
-      <h4>Flêches</h4>
-      <div class="lzr-row-wrap lzr-margin-bottom">
-        <div class="lzr-icon-block">
-        ${getSvgIcon('arrows-rotate')}
-          <span>arrows-rotate</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('chevron-right')}
-          <span>chevron-right</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('angles-up')}
-          <span>angles-up</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('angles-down')}
-          <span>angles-down</span>
-        </div>
-      </div>
-      <h4>Monnaies</h4>
-      <div class="lzr-row-wrap lzr-margin-bottom">
-        <div class="lzr-icon-block">
-          ${getSvgIcon('euro-sign')}
-          <span>euro-sign</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('equals')}
-          <span>equals</span>
-        </div>
-      </div>
-      <h4>Météorologie</h4>
-      <div class="lzr-row-wrap lzr-margin-bottom">
-        <div class="lzr-icon-block">
-          ${getSvgIcon('cloud-sun-rain')}
-          <span>cloud-sun-rain</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('cloud-showers-heavy')}
-          <span>cloud-showers-heavy</span>
-        </div>
-      </div>
-      <h4>Contrôles audio</h4>
-      <div class="lzr-row-wrap lzr-margin-bottom">
-        <div class="lzr-icon-block">
-          ${getSvgIcon('backward-step')}
-          <span>backward-step</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('forward-step')}
-          <span>forward-step</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('play')}
-          <span>play</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('pause')}
-          <span>pause</span>
-        </div>
-      </div>
-      <h4>Divers</h4>
-      <div class="lzr-row-wrap lzr-margin-bottom">
-        <div class="lzr-icon-block">
-          ${getSvgIcon('basket-shopping')}
-          <span>basket-shopping</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('bed')}
-          <span>bed</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('shop')}
-          <span>shop</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('utensils')}
-          <span>utensils</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('gauge-simple')}
-          <span>gauge-simple</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('gauge-simple-high')}
-          <span>gauge-simple-high</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('database')}
-          <span>database</span>
-        </div>
-        <div class="lzr-icon-block">
-          ${getSvgIcon('palette')}
-          <span>palette</span>
-        </div>
+      <div class="lzr-row-wrap lzr-margin-bottom" style="align-items: flex-start;">
+        ${getIconsDom()}
       </div>
 
       <h3>Tailles</h3>
@@ -1169,4 +1035,17 @@ export function render() {
   FOOTER.innerHTML = `
     <span>FOOTER - v${APP_VERSION}</span>
   `;
+}
+
+function getIconsDom() {
+  let str = '';
+  for (let icon of ICONS) {
+    str += `
+      <div class="lzr-icon-block fixed">
+        ${getSvgIcon(icon.name, 'l')}
+        <span>${icon.name}</span>
+      </div>
+    `;
+  }
+  return str;
 }

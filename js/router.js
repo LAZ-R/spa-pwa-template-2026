@@ -4,26 +4,39 @@
 // ================================
 
 /**
- * Récupère la base de l'URL à injecter dans les routes
- * "/" pour localhost
- * "/mon-repo/" quand déployé sur GH Pages
+ * Base path “serveur” sous lequel l’app est servie.
+ * 
+ * Objectif: récupère la base de l'URL à injecter dans les routes.
+ * - En local : "/" (ex: http://localhost:5500/)
+ * - Sur GitHub Pages : "/mon-repo/" (ex: https://user.github.io/mon-repo/)
+ * 
+ * ⚠️ Important : cette déduction est correcte si l'app “démarre” sur la racine du site/de l’app (PWA start_url, page d’entrée, etc.).
+ * Si tu fais du deep-link direct (ex: /mon-repo/settings) sans fallback serveur,
+ * location.pathname vaudra "/mon-repo/settings" et ce calcul ne donnera plus un vrai base path.
  */
 export const APP_BASE_PATH = location.pathname.endsWith('/')
   ? location.pathname
   : `${location.pathname}/`;
 
-// Table de routes -> pour chaque chemin, on sait quel module ES charger.
-// Chaque module exporte une fonction: export function render() { ... }
+/**
+ * Table de routes internes
+ * 
+ * Pour chaque chemin interne, on sait ainsi quel module ES charger.
+ * 
+ * Convention : chaque module exporte une fonction `render()` :
+ *   export function render() { ... }
+ */
 const routes = {
   '/settings': () => import('./views/settings/settings.view.js'),
   '/':         () => import('./views/homepage/homepage.view.js'), // fallback racine
 };
 
 /**
- * Transforme une route “interne app” (ex. "/settings") en URL “réelle navigateur” (ex. "/mon-repo/settings" sur GitHub Pages).
- * Objectif: "ajoute" le préfix du repo pour "lancer la navigation dans le browser et naviger vers la bonne url"
- * @param {*} appPath 
- * @returns 
+ * Transforme une route interne (ex. "/settings") en URL réelle navigateur (ex. "/mon-repo/settings" sur GitHub Pages) : ajoute potentiellement le préfix du repo.
+ * 
+ * Objectif: lancer la navigation dans le browser et naviger vers la bonne url avant l'interception du navEvent.
+ * @param {string} appPath Route interne (doit commencer par "/")
+ * @returns {string} Chemin externe (pathname) incluant éventuellement APP_BASE_PATH
  */
 export function toExternalPath(appPath) {
   if (APP_BASE_PATH === '/') return appPath;
@@ -32,9 +45,10 @@ export function toExternalPath(appPath) {
 
 /**
  * Fait l’inverse de toExternalPath(appPath): prend le pathname réel (ex. "/mon-repo/settings") et le ramène à la route interne (ex. "/settings").
- * Objectif : que le routeur fasse le lookup dans "routes" qui, lui, reste propre ("/settings", "/about", etc.).
- * @param {*} pathname 
- * @returns 
+ * 
+ * Objectif : garder `routes` propre et indépendant du mode de déploiement.
+ * @param {string} pathname Pathname externe (ex: location.pathname ou new URL(...).pathname)
+ * @returns {string} Route interne (commence par "/")
  */
 export function normalizePath(pathname) {
   // Cas local: APP_BASE_PATH === '/'
@@ -51,30 +65,55 @@ export function normalizePath(pathname) {
   return pathname || '/';
 }
 
+/**
+ * Charge et rend la “page” correspondant à une URL (ou pathname) donnée.
+ *
+ * Fonctionnement :
+ * 1) Convertit l’entrée en URL et récupère son `pathname` externe.
+ * 2) Normalise ce pathname externe vers une route interne via `normalizePath()`.
+ * 3) Sélectionne le loader dans `routes` (fallback sur "/").
+ * 4) Importe dynamiquement le module de page.
+ * 5) Appel de `pageModule.render()`.
+ * 
+ * Si disponible, encapsule la mutation DOM dans `document.startViewTransition(...)`
+ * pour laisser le navigateur animer l’état visuel avant/après.
+ *
+ * Remarques :
+ * - Les erreurs de rendu sont loggées et relancées (throw) pour éviter qu’elles soient “avalées”
+ *   dans le handler de `navigation.intercept()`.
+ * - Le module de page est responsable de manipuler le DOM (ex: innerHTML sur main/footer).
+ *
+ * @param {string} urlString URL absolue ou relative (ex: navEvent.destination.url, location.href, "/settings")
+ * @returns {Promise<void>} Résolue quand le module est chargé et que la mutation DOM a été déclenchée.
+ */
 export async function renderURL(urlString) {
   try {
-    // Convertit la string en URL pour extraire le pathname
+    // Convertit l'entrée en URL. `location.href` sert de base pour les chemins relatifs.
     const url = new URL(urlString, location.href);
 
-    // 1) pathname “réel” du navigateur (ex: /mon-repo/settings)
+    // 1) pathname “réel” du navigateur (ex: "/mon-repo/settings")
     const rawPath = url.pathname;
-    // 2) pathname “interne” de ton app (ex: /settings)
+
+    // 2) pathname “interne” de ton app (ex: "/settings")
     const appPath = normalizePath(rawPath);
-    // 3) lookup route interne
+
+    // 3) lookup route interne (fallback "/")
     const loadPageModule = routes[appPath] || routes['/'];
+
+    // 4) import dynamique du module de page
     const pageModule = await loadPageModule();
 
-    // Le module de page se charge de récupérer les éléments et de les hydrater
+    // 5) Le module de page hydrate le DOM
     const applyDOMUpdates = () => {
       try {
         pageModule.render(); // peut throw (innerHTML d’une variable undef, etc.)
       } catch (err) {
         console.error('[render() error]', err);
-        throw err; // IMPORTANT: rethrow pour remonter l’échec au handler
+        throw err; // rethrow pour que l’échec remonte au handler de navigation
       }
     }
 
-    // Si View Transitions est dispo, on anime le diff ; sinon, on applique directement
+    // View Transition : on anime l’avant/après (si supportée)
     if (document.startViewTransition) {
       const vt = document.startViewTransition(applyDOMUpdates);
       /* await */ vt.finished; // si tu veux enchaîner; sinon omets l'await
@@ -98,6 +137,7 @@ navigation.addEventListener('navigate', (navEvent) => {
   });
 });
 
+// Filets de sécurité pour voir les erreurs même si elles sont “avalées” ailleurs
 window.addEventListener('error', (ev) => {
   console.error('[global error]', ev.error || ev.message, ev);
 });

@@ -54,13 +54,24 @@
   .lzr-icon-block {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     gap: 6px;
     border: 1px solid var(--color--default-light);
     padding: 8px;
     border-radius: var(--border-radius--default);
     min-width: 60px;
-    color: var(--color--default-dark);
+    color: var(--color--fg-default);
+    text-align: center;
+
+    &.fixed {
+      --width: if(
+        /* PHONE */ media(width < 767px):  calc((100svw - (2 * var(--horizontal-padding)) - (2 * 16px)) / 3);
+        /* TABLET */media(width < 1280px): calc((100svw - (2 * var(--horizontal-padding)) - (3 * 16px)) / 4);
+        /* LAPTOP */media(width < 1920px): calc((100svw - (2 * var(--horizontal-padding)) - (4 * 16px)) / 5);
+        /* DESKTOP */ else:                calc((100svw - (2 * var(--horizontal-padding)) - (5 * 16px)) / 6);
+      );
+      min-width: var(--width); width: var(--width); max-width: var(--width);
+    }
   }
 }

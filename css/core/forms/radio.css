@@ -42,7 +42,7 @@
   }
   
   .lzr-radio {
-    --size: 16px;
+    --size: 20px;
 
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -59,7 +59,7 @@
     position: relative;
 
     &:checked {
-      border: 8px solid var(--color--primary);
+      border: calc(var(--size) / 2) solid var(--color--primary);
     }
 
     @media (pointer: fine) {

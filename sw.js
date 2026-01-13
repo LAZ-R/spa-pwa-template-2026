@@ -1,4 +1,4 @@
-var cacheName = 'spa-pwa-template-2026-0008';
+var cacheName = 'spa-pwa-template-2026-0009';
 var filesToCache = [
   './',
   './index.html',
@@ -25,4 +25,4 @@ self.addEventListener('fetch', function(e) {
   );
 });
 
-const version = '0.0.0.8';
+const version = '0.0.0.9';
