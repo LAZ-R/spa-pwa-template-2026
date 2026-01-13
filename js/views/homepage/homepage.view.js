@@ -1,4 +1,5 @@
-import { APP_NAME, APP_BASE_PATH, APP_VERSION } from "../../../app-properties.js";
+import { APP_NAME, APP_VERSION } from "../../../app-properties.js";
+import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { showToast } from "../../services/toast.service.js";
 
@@ -24,9 +25,9 @@ const options = `
 export function render() {
   // Set HEADER layout
   HEADER.innerHTML = `
-    <a href="${APP_BASE_PATH}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
+    <a href="${toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
     <span>${APP_NAME}</span>
-    <a href="${APP_BASE_PATH}settings" class="lzr-button lzr-outlined lzr-square lzr-primary">${getSvgIcon('gear', 'm', 'var(--color--primary)')}</a>
+    <a href="${toExternalPath('/settings')}" class="lzr-button lzr-outlined lzr-square lzr-primary">${getSvgIcon('gear', 'm', 'var(--color--primary)')}</a>
   `;
 
   // Set MAIN layout

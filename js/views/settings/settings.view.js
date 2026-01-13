@@ -1,4 +1,4 @@
-import { APP_BASE_PATH } from "../../../app-properties.js";
+import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { onThemeClick } from "../../services/settings-service.js";
 import { getStorageDom, getUser, setUser } from "../../services/storage.service.js";
@@ -15,7 +15,7 @@ export function render() {
 
   // Set HEADER layout
   HEADER.innerHTML = `
-  <a href="${APP_BASE_PATH}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
+  <a href="${toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
   `;
 
   // Set MAIN layout

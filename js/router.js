@@ -3,23 +3,65 @@
 // + View Transitions (optionnel)
 // ================================
 
-import { APP_BASE_PATH } from '../app-properties.js'
+/**
+ * Récupère la base de l'URL à injecter dans les routes
+ * "/" pour localhost
+ * "/mon-repo/" quand déployé sur GH Pages
+ */
+export const APP_BASE_PATH = location.pathname.endsWith('/')
+  ? location.pathname
+  : `${location.pathname}/`;
 
 // Table de routes -> pour chaque chemin, on sait quel module ES charger.
 // Chaque module exporte une fonction: export function render() { ... }
 const routes = {
-  [`${APP_BASE_PATH}settings`]: () => import('./views/settings/settings.view.js'),
-  [`${APP_BASE_PATH}`]:         () => import('./views/homepage/homepage.view.js'), // fallback racine
+  '/settings': () => import('./views/settings/settings.view.js'),
+  '/':         () => import('./views/homepage/homepage.view.js'), // fallback racine
 };
+
+/**
+ * Transforme une route “interne app” (ex. "/settings") en URL “réelle navigateur” (ex. "/mon-repo/settings" sur GitHub Pages).
+ * Objectif: "ajoute" le préfix du repo pour "lancer la navigation dans le browser et naviger vers la bonne url"
+ * @param {*} appPath 
+ * @returns 
+ */
+export function toExternalPath(appPath) {
+  if (APP_BASE_PATH === '/') return appPath;
+  return APP_BASE_PATH.replace(/\/$/, '') + appPath; // "/mon-repo" + "/settings"
+}
+
+/**
+ * Fait l’inverse de toExternalPath(appPath): prend le pathname réel (ex. "/mon-repo/settings") et le ramène à la route interne (ex. "/settings").
+ * Objectif : que le routeur fasse le lookup dans "routes" qui, lui, reste propre ("/settings", "/about", etc.).
+ * @param {*} pathname 
+ * @returns 
+ */
+export function normalizePath(pathname) {
+  // Cas local: APP_BASE_PATH === '/'
+  if (APP_BASE_PATH === '/') return pathname || '/';
+
+  // Cas GH Pages: pathname = "/mon-repo/settings"
+  // on veut => "/settings"
+  if (pathname.startsWith(APP_BASE_PATH)) {
+    // APP_BASE_PATH finit par '/', donc on retire tout sauf le '/' initial
+    return '/' + pathname.slice(APP_BASE_PATH.length);
+  }
+
+  // Si ça ne matche pas, on renvoie tel quel (fallback)
+  return pathname || '/';
+}
 
 export async function renderURL(urlString) {
   try {
     // Convertit la string en URL pour extraire le pathname
     const url = new URL(urlString, location.href);
-    const path = url.pathname;
 
-    // Sélectionne et charge le module de page (import dynamique)
-    const loadPageModule = routes[path] || routes['/'];
+    // 1) pathname “réel” du navigateur (ex: /mon-repo/settings)
+    const rawPath = url.pathname;
+    // 2) pathname “interne” de ton app (ex: /settings)
+    const appPath = normalizePath(rawPath);
+    // 3) lookup route interne
+    const loadPageModule = routes[appPath] || routes['/'];
     const pageModule = await loadPageModule();
 
     // Le module de page se charge de récupérer les éléments et de les hydrater
