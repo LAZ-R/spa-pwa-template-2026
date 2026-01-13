@@ -5,7 +5,7 @@
   
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     padding-block: none;
     padding-inline: none;
@@ -35,6 +35,13 @@
       /* Pseudo élément représentant la flêche */
       /* appearance: none; */
       /* content: ''; */
+    }
+
+    selectedcontent {
+      max-width: calc(100% - 10.55px - 8px);
+      text-wrap: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
     }
   
     .lzr-icon {

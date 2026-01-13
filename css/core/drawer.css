@@ -11,7 +11,7 @@
     border-radius: var(--border-radius--default);
     overflow: hidden;
    
-    > .tile-header {
+    .tile-header {
       position: relative;
       display: flex;
       justify-content: flex-start;
@@ -22,40 +22,42 @@
       padding: 8px 12px;
       background-color: var(--color--bg-default);
       border-radius: var(--border-radius--default) var(--border-radius--default) 0 0;
-      
-      .lzr-icon {
-        path { fill: var(--color--fg-default); }
-      }
-      > .header-title {
+
+      .title-bloc {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .spaced-text {
+        margin-top: 2px;
+        font-size: 16px;
+      }
+      
+      .lzr-icon {
+        path { fill: var(--color--fg-default); }
+      }
+  
+      .header-title {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         font-size: 18px;
         font-weight: 600;
         gap: 8px;
         color: var(--color--fg-default);
         width: 100%;
       }
-
       .header-sub-title {
         display: block;
         font-weight: 400;
         color: var(--color--fg-default);
       }
   
-      > .tile-caret {
-        margin-left: auto;
-        min-width: 20px; width: 20px; max-width: 20px;
-        min-height: 20px; height: 20px; max-height: 20px;
-  
-        > .lzr-icon {
-          transition: transform .33s ease-out;
-          transform: rotate(90deg);
-        }
-      }
-
-      > input[type="checkbox"] {
+      input[type="checkbox"] {
         box-sizing: border-box;
         appearance: none;
         cursor: pointer;
@@ -70,21 +72,31 @@
         margin: 0;
         background-color: transparent;
       }
+  
+      .tile-caret {
+        margin-left: auto;
+        min-width: 20px; width: 20px; max-width: 20px;
+        min-height: 20px; height: 20px; max-height: 20px;
+  
+        .lzr-icon {
+          transition: transform .33s ease-out;
+          transform: rotate(90deg);
+        }
+      }
     }
-
-    > .expandable-wrapper {
+    .expandable-wrapper {
       width: 100%;
       min-height: fit-content;
       display: grid;
       grid-template-rows: 0fr;
       transition: grid-template-rows .33s ease-out;
   
-      > .expandable-inner {
+      .expandable-inner {
         width: 100%;
         min-height: fit-content;
         overflow: hidden;
   
-        > .inner-body {
+        .inner-body {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -99,27 +111,27 @@
       }
     }
   
-    @media (pointer: fine) { &:has(>.tile-header > input[type="checkbox"]:hover) {
-      > .tile-header {
+    @media (pointer: fine) { &:has(.tile-header > input[type="checkbox"]:hover) {
+      .tile-header {
         background-color: var(--color--bg-default--hover);
       }
     }}
-    &:has(>.tile-header > input[type="checkbox"]:active) {
+    &:has(.tile-header > input[type="checkbox"]:active) {
       outline: 2px solid var(--color--outline-default);
-      > .tile-header {
+      .tile-header {
         background-color: var(--color--bg-default--active);
       }
     }
-    &:has(>.tile-header > input[type="checkbox"]:checked) {
-      > .tile-header {
+    &:has(.tile-header > input[type="checkbox"]:checked) {
+      .tile-header {
   
-        > .tile-caret {
-          > .lzr-icon {
+        .tile-caret {
+          .lzr-icon {
             transform: rotate(270deg);
           }
         }
       }
-      > .expandable-wrapper {
+      .expandable-wrapper {
         grid-template-rows: 1fr;
       }
     }
@@ -127,33 +139,33 @@
     &.lzr-solid {
       border: 1px solid var(--color--fg-default);
   
-      > .tile-header {
+      .tile-header {
         background-color: var(--color--fg-default);
         .lzr-icon {
           path { fill: var(--color--bg-default); }
         }
         
-        > .header-title {
+        .header-title {
           color: var(--color--bg-default);
         }
-        > .header-sub-title {
+        .header-sub-title {
           color: var(--color--bg-default);
         }
       }
   
-      @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-        > .tile-header {
+      @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+        .tile-header {
           background-color: var(--color--fg-default--hover);
         }
       }}
-      &:has(>.tile-header > input[type="checkbox"]:active) {
+      &:has(.tile-header > input[type="checkbox"]:active) {
         outline: 2px solid var(--color--outline--fg-default);
-        > .tile-header {
+        .tile-header {
           background-color: var(--color--fg-default--active);
         }
       }
-      &:has(>.tile-header > input[type="checkbox"]:checked) {
-        > .tile-header {
+      &:has(.tile-header > input[type="checkbox"]:checked) {
+        .tile-header {
   
         }
       }
@@ -161,33 +173,33 @@
       &.lzr-primary {
         border: 1px solid var(--color--primary);
   
-        > .tile-header {
+        .tile-header {
           background-color: var(--color--primary);
           .lzr-icon {
             path { fill: var(--color--on-primary); }
           }
           
-          > .header-title {
+          .header-title {
             color: var(--color--on-primary);
           }
-          > .header-sub-title {
+          .header-sub-title {
             color: var(--color--on-primary);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-          > .tile-header {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+          .tile-header {
             background-color: var(--color--primary--hover);
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           outline: 2px solid var(--color--outline--primary);
-          > .tile-header {
+          .tile-header {
             background-color: var(--color--primary--active);
           }
         }
-        &:has(>.tile-header > input[type="checkbox"]:checked) {
-          > .tile-header {
+        &:has(.tile-header > input[type="checkbox"]:checked) {
+          .tile-header {
   
           }
         }
@@ -196,33 +208,33 @@
       &.lzr-success {
         border: 1px solid var(--color--success);
   
-        > .tile-header {
+        .tile-header {
           background-color: var(--color--success);
           .lzr-icon {
             path { fill: var(--color--on-success); }
           }
           
-          > .header-title {
+          .header-title {
             color: var(--color--on-success);
           }
-          > .header-sub-title {
+          .header-sub-title {
             color: var(--color--on-success);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-          > .tile-header {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+          .tile-header {
             background-color: var(--color--success--hover);
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           outline: 2px solid var(--color--outline--success);
-          > .tile-header {
+          .tile-header {
             background-color: var(--color--success--active);
           }
         }
-        &:has(>.tile-header > input[type="checkbox"]:checked) {
-          > .tile-header {
+        &:has(.tile-header > input[type="checkbox"]:checked) {
+          .tile-header {
   
           }
         }
@@ -231,33 +243,33 @@
       &.lzr-info {
         border: 1px solid var(--color--info);
   
-        > .tile-header {
+        .tile-header {
           background-color: var(--color--info);
           .lzr-icon {
             path { fill: var(--color--on-info); }
           }
           
-          > .header-title {
+          .header-title {
             color: var(--color--on-info);
           }
-          > .header-sub-title {
+          .header-sub-title {
             color: var(--color--on-info);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-          >.tile-header {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+          .tile-header {
             background-color: var(--color--info--hover);
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           outline: 2px solid var(--color--outline--info);
-          > .tile-header {
+          .tile-header {
             background-color: var(--color--info--active);
           }
         }
-        &:has(>.tile-header > input[type="checkbox"]:checked) {
-          > .tile-header {
+        &:has(.tile-header > input[type="checkbox"]:checked) {
+          .tile-header {
   
           }
         }
@@ -266,33 +278,33 @@
       &.lzr-error {
         border: 1px solid var(--color--error);
   
-        > .tile-header {
+        .tile-header {
           background-color: var(--color--error);
           .lzr-icon {
             path { fill: var(--color--on-error); }
           }
           
-          > .header-title {
+          .header-title {
             color: var(--color--on-error);
           }
-          > .header-sub-title {
+          .header-sub-title {
             color: var(--color--on-error);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-          > .tile-header {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+          .tile-header {
             background-color: var(--color--error--hover);
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           outline: 2px solid var(--color--outline--error);
-          > .tile-header {
+          .tile-header {
             background-color: var(--color--error--active);
           }
         }
-        &:has(>.tile-header > input[type="checkbox"]:checked) {
-          >.tile-header {
+        &:has(.tile-header > input[type="checkbox"]:checked) {
+          .tile-header {
   
           }
         }
@@ -302,47 +314,47 @@
     &.lzr-outlined {
       border: 1px solid var(--color--fg-default);
   
-      > .tile-header {
+      .tile-header {
         background-color: transparent;
         .lzr-icon {
           path { fill: var(--color--fg-default); }
         }
         
-        > .header-title {
+        .header-title {
           color: var(--color--fg-default);
         }
-        > .header-sub-title {
+        .header-sub-title {
           color: var(--color--fg-default);
         }
       }
   
-      @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-        > .tile-header {
+      @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+        .tile-header {
           background-color: var(--color--bg-default--hover);
           .lzr-icon {
             path { fill: var(--color--fg-default); }
           }
   
-          > .header-title {
+          .header-title {
             color: var(--color--fg-default);
           }
-          > .header-sub-title {
+          .header-sub-title {
             color: var(--color--fg-default);
           }
         }
       }}
-      &:has(>.tile-header > input[type="checkbox"]:active) {
+      &:has(.tile-header > input[type="checkbox"]:active) {
         outline: 2px solid var(--color--outline-default);
-        > .tile-header {
+        .tile-header {
           background-color: var(--color--bg-default--active);
           .lzr-icon {
             path { fill: var(--color--fg-default); }
           }
   
-          > .header-title {
+          .header-title {
             color: var(--color--fg-default);
           }
-          > .header-sub-title {
+          .header-sub-title {
             color: var(--color--fg-default);
           }
         }
@@ -350,30 +362,29 @@
   
       &.lzr-primary {
         border: 1px solid var(--color--primary);
-
-        > .tile-header {
+        .lzr-icon {
+          path { fill: var(--color--primary); }
+        }
+  
+        .tile-header {
           background-color: transparent;
           
-          .lzr-icon {
-            path { fill: var(--color--primary); }
-          }
-          > .header-title {
+          .header-title {
             color: var(--color--primary);
           }
           .header-sub-title {
             color: var(--color--primary);
           }
         }
-        
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-          > .tile-header {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+          .tile-header {
             background-color: var(--color--primary--hover);
             .lzr-icon {
               path { fill: var(--color--on-primary); }
             }
   
-            > .header-title {
+            .header-title {
               color: var(--color--on-primary);
             }
             .header-sub-title {
@@ -381,18 +392,18 @@
             }
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           outline: 2px solid var(--color--outline--primary);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--primary--active);
             .lzr-icon {
               path { fill: var(--color--on-primary); }
             }
   
-            >.header-title {
+            .header-title {
               color: var(--color--on-primary);
             }
-            >.header-sub-title {
+            .header-sub-title {
               color: var(--color--on-primary);
             }
           }
@@ -402,45 +413,45 @@
       &.lzr-success {
         border: 1px solid var(--color--success);
   
-        >.tile-header {
+        .tile-header {
           background-color: transparent;
   
           .lzr-icon {
             path { fill: var(--color--success); }
           }
-          >.header-title {
+          .header-title {
             color: var(--color--success);
           }
-          >.header-sub-title {
+          .header-sub-title {
             color: var(--color--success);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-          >.tile-header {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+          .tile-header {
             background-color: var(--color--success--hover);
             .lzr-icon {
               path { fill: var(--color--on-success); }
             }
-            >.header-title {
+            .header-title {
               color: var(--color--on-success);
             }
-            >.header-sub-title {
+            .header-sub-title {
               color: var(--color--on-success);
             }
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           outline: 2px solid var(--color--outline--success);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--success--active);
             .lzr-icon {
               path { fill: var(--color--on-success); }
             }
-            >.header-title {
+            .header-title {
               color: var(--color--on-success);
             }
-            >.header-sub-title {
+            .header-sub-title {
               color: var(--color--on-success);
             }
           }
@@ -450,47 +461,47 @@
       &.lzr-info {
         border: 1px solid var(--color--info);
   
-        >.tile-header {
+        .tile-header {
           background-color: transparent;
           .lzr-icon {
             path { fill: var(--color--info); }
           }
           
-          >.header-title {
+          .header-title {
             color: var(--color--info);
           }
-          >.header-sub-title {
+          .header-sub-title {
             color: var(--color--info);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-          >.tile-header {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+          .tile-header {
             background-color: var(--color--info--hover);
             .lzr-icon {
               path { fill: var(--color--on-info); }
             }
   
-            >.header-title {
+            .header-title {
               color: var(--color--on-info);
             }
-            >.header-sub-title {
+            .header-sub-title {
               color: var(--color--on-info);
             }
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           outline: 2px solid var(--color--outline--info);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--info--active);
             .lzr-icon {
               path { fill: var(--color--on-info); }
             }
   
-            >.header-title {
+            .header-title {
               color: var(--color--on-info);
             }
-            >.header-sub-title {
+            .header-sub-title {
               color: var(--color--on-info);
             }
           }
@@ -500,47 +511,47 @@
       &.lzr-error {
         border: 1px solid var(--color--error);
   
-        >.tile-header {
+        .tile-header {
           background-color: transparent;
           .lzr-icon {
             path { fill: var(--color--error); }
           }
           
-          >.header-title {
+          .header-title {
             color: var(--color--error);
           }
-          >.header-sub-title {
+          .header-sub-title {
             color: var(--color--error);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
-          >.tile-header {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
+          .tile-header {
             background-color: var(--color--error--hover);
             .lzr-icon {
               path { fill: var(--color--on-error); }
             }
   
-            >.header-title {
+            .header-title {
               color: var(--color--on-error);
             }
-            >.header-sub-title {
+            .header-sub-title {
               color: var(--color--on-error);
             }
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           outline: 2px solid var(--color--outline--error);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--error--active);
             .lzr-icon {
               path { fill: var(--color--on-error); }
             }
   
-            >.header-title {
+            .header-title {
               color: var(--color--on-error);
             }
-            >.header-sub-title {
+            .header-sub-title {
               color: var(--color--on-error);
             }
           }
@@ -551,143 +562,143 @@
     &.lzr-flat {
       border: 1px solid transparent;
   
-      >.tile-header {
+      .tile-header {
         background-color: transparent;
         .lzr-icon {
           path { fill: var(--color--fg-default); }
         }
   
-        >.header-title {
+        .header-title {
           color: var(--color--fg-default);
         }
-        >.header-sub-title {
+        .header-sub-title {
           color: var(--color--fg-default);
         }
       }
   
-      @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
+      @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
         border: 1px solid var(--color--fg-default--alpha);
   
-        >.tile-header {
+        .tile-header {
           background-color: var(--color--fg-default--alpha);
         }
       }}
-      &:has(>.tile-header > input[type="checkbox"]:active) {
+      &:has(.tile-header > input[type="checkbox"]:active) {
         border: 1px solid var(--color--fg-default--alpha);
         outline: 2px solid var(--color--outline--fg-default);
   
-        >.tile-header {
+        .tile-header {
           background-color: var(--color--fg-default--alpha);
         }
       }
   
       &.lzr-primary {
-        >.tile-header {
+        .tile-header {
           .lzr-icon {
             path { fill: var(--color--primary); }
           }
-          >.header-title {
+          .header-title {
             color: var(--color--primary);
           }
-          >.header-sub-title {
+          .header-sub-title {
             color: var(--color--primary);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
           border: 1px solid var(--color--primary--alpha);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--primary--alpha);
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           border: 1px solid var(--color--primary--alpha);
           outline: 2px solid var(--color--outline--primary);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--primary--alpha);
           }
         }
       }
   
       &.lzr-success {
-        >.tile-header {
+        .tile-header {
           .lzr-icon {
             path { fill: var(--color--success); }
           }
-          >.header-title {
+          .header-title {
             color: var(--color--success);
           }
-          >.header-sub-title {
+          .header-sub-title {
             color: var(--color--success);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
           border: 1px solid var(--color--success--alpha);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--success--alpha);
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           border: 1px solid var(--color--success--alpha);
           outline: 2px solid var(--color--outline--success);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--success--alpha);
           }
         }
       }
   
       &.lzr-info {
-        >.tile-header {
+        .tile-header {
           .lzr-icon {
             path { fill: var(--color--info); }
           }
-          >.header-title {
+          .header-title {
             color: var(--color--info);
           }
-          >.header-sub-title {
+          .header-sub-title {
             color: var(--color--info);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
           border: 1px solid var(--color--info--alpha);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--info--alpha);
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           border: 1px solid var(--color--info--alpha);
           outline: 2px solid var(--color--outline--info);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--info--alpha);
           }
         }
       }
   
       &.lzr-error {
-        >.tile-header {
+        .tile-header {
           .lzr-icon {
             path { fill: var(--color--error); }
           }
-          >.header-title {
+          .header-title {
             color: var(--color--error);
           }
-          >.header-sub-title {
+          .header-sub-title {
             color: var(--color--error);
           }
         }
   
-        @media (pointer: fine) {&:has(>.tile-header > input[type="checkbox"]:hover) {
+        @media (pointer: fine) {&:has(.tile-header > input[type="checkbox"]:hover) {
           border: 1px solid var(--color--error--alpha);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--error--alpha);
           }
         }}
-        &:has(>.tile-header > input[type="checkbox"]:active) {
+        &:has(.tile-header > input[type="checkbox"]:active) {
           border: 1px solid var(--color--error--alpha);
           outline: 2px solid var(--color--outline--error);
-          >.tile-header {
+          .tile-header {
             background-color: var(--color--error--alpha);
           }
         }

@@ -1,0 +1,65 @@
+.lzr {
+
+  .lzr-radio-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+
+    .lzr-radio-raw {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      gap: 8px;
+      border-radius: var(--border-radius--default);
+      padding: 8px;
+
+      @media (pointer: fine) {
+        &:hover {
+          cursor: pointer;
+          background-color: var(--color--bg-default--hover);
+        }
+      }
+      &:active {
+        outline: 4px solid var(--color--outline--primary);
+        /* background-color: var(--color--bg-default--active); */
+      }
+  
+      label {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+
+        @media (pointer: fine) {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  
+  .lzr-radio {
+    --size: 16px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    border-radius: 50%;
+    min-width: var(--size); width: var(--size); max-width: var(--size);
+    min-height: var(--size); height: var(--size); max-height: var(--size);
+
+    border: 2px solid var(--color--fg-default);
+    transition: 0.2s all linear;
+
+    position: relative;
+
+    &:checked {
+      border: 8px solid var(--color--primary);
+    }
+  }
+
+}

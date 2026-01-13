@@ -1,6 +1,6 @@
 import { APP_NAME, APP_BASE_PATH, APP_VERSION } from "../app-properties.js";
 import * as Router from "./router.js";
-import { getUser, setStorage } from "./services/storage.service..js";
+import { getUser, setStorage } from "./services/storage.service.js";
 import { setHTMLTitle, logAppInfos } from "./utils/UTILS.js";
 import { requestWakeLock } from "./utils/wakelock.js";
 

@@ -1,43 +1,24 @@
-import { APP_VERSION } from "../../app-properties.js";
-import { getSvgIcon } from "./icons.service.js";
-import { getUser, setUser } from "./storage.service..js";
+import { requestWakeLock } from "../utils/wakelock.js";
+import { getUser, setUser } from "./storage.service.js";
 
-export function getSettingsDom() {
-  return `
-    <h2>Thème</h2>
-    <div id="themesContainer" class="themes-container">
-    ${getThemesDom()}
-    </div>
-    <hr>
-    <h2>Nouvelle partie</h2>
-    <button class="lzr-button lzr-solid lzr-error" style="width: 100%;" onclick="onNewGameButtonClick()">Nouvelle partie</button>
-  `;
-}
 
 export function getThemesDom() {
   let user = getUser();
   return `
-    <div onclick="onThemeClick('light')" class="theme-bloc light ${user.PREFERED_THEME == 'light' ? 'selected' : ''}">
-      <div class="background">
-        <div class="text">
-          <div class="primary"></div>
-        </div>
+    <div class="lzr-radio-group">
+      <div class="lzr-radio-raw" onclick="onThemeClick('light')">
+        <input type="radio" class="lzr-radio" id="light" name="theme" value="light" ${user.PREFERED_THEME == 'light' ? 'checked' : ''} />
+        <label for="light">Clair</label>
       </div>
-    </div>
 
-    <div onclick="onThemeClick('dark')" class="theme-bloc dark ${user.PREFERED_THEME == 'dark' ? 'selected' : ''}">
-      <div class="background">
-        <div class="text">
-          <div class="primary"></div>
-        </div>
+      <div class="lzr-radio-raw" onclick="onThemeClick('dark')">
+        <input type="radio" class="lzr-radio" id="dark" name="theme" value="dark" ${user.PREFERED_THEME == 'dark' ? 'checked' : ''} />
+        <label for="dark">Sombre</label>
       </div>
-    </div>
 
-    <div onclick="onThemeClick('alternative')" class="theme-bloc alternative ${user.PREFERED_THEME == 'alternative' ? 'selected' : ''}">
-      <div class="background">
-        <div class="text">
-          <div class="primary"></div>
-        </div>
+      <div class="lzr-radio-raw" onclick="onThemeClick('alternative')">
+        <input type="radio" class="lzr-radio" id="alternative" name="theme" value="alternative" ${user.PREFERED_THEME == 'alternative' ? 'checked' : ''} />
+        <label for="alternative">Alternatif</label>
       </div>
     </div>
   `;
@@ -53,7 +34,18 @@ export function onThemeClick(theme) {
     user.PREFERED_THEME = theme;
     setUser(user);
     document.getElementsByClassName('lzr')[0].style = `--theme: '${user.PREFERED_THEME}';`;
-    updateThemesContainer();
+    //updateThemesContainer();
   }
 };
 window.onThemeClick = onThemeClick;
+
+export function onKeepScreenAwakeClick(event) {
+  const isChecked = event.srcElement.checked;
+  let user = getUser();
+  user.KEEP_SCREEN_AWAKE = isChecked;
+  setUser(user);
+  if (isChecked) {
+    requestWakeLock();
+  }
+}
+window.onKeepScreenAwakeClick = onKeepScreenAwakeClick;

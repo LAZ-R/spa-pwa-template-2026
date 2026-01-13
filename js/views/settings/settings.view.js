@@ -1,8 +1,7 @@
 import { APP_NAME, APP_BASE_PATH } from "../../../app-properties.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { getThemesDom } from "../../services/settings-service.js";
-import { getStorageDom, getUser, setUser } from "../../services/storage.service..js";
-import { requestWakeLock } from "../../utils/wakelock.js";
+import { getStorageDom, getUser, setUser } from "../../services/storage.service.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
 const HEADER = document.getElementById('header');
@@ -26,7 +25,7 @@ export function render() {
 
     <div class="setting-block">
       <span>Conserver l'écran allumé</span>
-      <label class="switch">
+      <label class="lzr-switch">
         <input type="checkbox" onclick="onKeepScreenAwakeClick(event)" ${user.KEEP_SCREEN_AWAKE ? 'checked' : ''} />
         <span class="slider"></span>
       </label>
@@ -85,13 +84,3 @@ export function render() {
   `;
 }
 
-function onKeepScreenAwakeClick(event) {
-  const isChecked = event.srcElement.checked;
-  let user = getUser();
-  user.KEEP_SCREEN_AWAKE = isChecked;
-  setUser(user);
-  if (isChecked) {
-    requestWakeLock();
-  }
-}
-window.onKeepScreenAwakeClick = onKeepScreenAwakeClick;

@@ -84,31 +84,31 @@
   /* ------------ PRIMARY ------------ */
   --color--primary: if(
     style(--theme: 'light'):       hsl(340, 50%, 45%)/* hsl(25, 100%, 36%) */;
-    style(--theme: 'dark'):        hsl(25, 65%, 70%); 
+    style(--theme: 'dark'):        hsl(340, 90%, 70%); 
     style(--theme: 'alternative'): hsl(19, 99%, 67%); 
     else: #333333
   );
   --color--primary--hover: if(
     style(--theme: 'light'):       hsl(340, 50%, 38%);
-    style(--theme: 'dark'):        hsl(25, 70%, 75%); 
+    style(--theme: 'dark'):        hsl(340, 90%, 75%); 
     style(--theme: 'alternative'): hsl(19, 99%, 72%);
     else: #333333
   );
   --color--primary--active: if(
     style(--theme: 'light'):       hsl(340, 50%, 31%);
-    style(--theme: 'dark'):        hsl(25,75%, 80%); 
+    style(--theme: 'dark'):        hsl(340, 90%, 80%); 
     style(--theme: 'alternative'): hsl(19, 99%, 77%); 
     else: #333333
   );
   --color--primary--alpha: if(
     style(--theme: 'light'):       hsl(340, 50%, 45%, .1);
-    style(--theme: 'dark'):        hsl(25, 65%, 50%, .1); 
+    style(--theme: 'dark'):        hsl(340, 90%, 70%, .1); 
     style(--theme: 'alternative'): hsl(19, 99%, 67%, .1); 
     else: #333333
   );
   --color--outline--primary: if(
     style(--theme: 'light'):       hsl(340, 50%, 45%, 33%);
-    style(--theme: 'dark'):        hsl(25, 65%, 50%, 33%); 
+    style(--theme: 'dark'):        hsl(340, 90%, 70%, 33%); 
     style(--theme: 'alternative'): hsl(19, 99%, 67%, 33%); 
     else: #333333
   );
@@ -511,10 +511,10 @@
 
   /* header height */
   --height--header: if(
-    /* PHONE */ media(width < 767px):  54px;
-    /* TABLET */media(width < 1280px): 54px;
-    /* LAPTOP */media(width < 1920px): 54px;
-    /* DESKTOP */ else:                54px;
+    /* PHONE */ media(width < 767px):  64px;
+    /* TABLET */media(width < 1280px): 64px;
+    /* LAPTOP */media(width < 1920px): 64px;
+    /* DESKTOP */ else:                64px;
   );
 
 
@@ -524,10 +524,10 @@
 
   /* footer height */
   --height--footer: if(
-    /* PHONE */ media(width < 767px):  54px;
-    /* TABLET */media(width < 1280px): 54px;
-    /* LAPTOP */media(width < 1920px): 54px;
-    /* DESKTOP */ else:                54px;
+    /* PHONE */ media(width < 767px):  48px;
+    /* TABLET */media(width < 1280px): 48px;
+    /* LAPTOP */media(width < 1920px): 48px;
+    /* DESKTOP */ else:                48px;
   );
 
   /* ------------------------------------------------------------------------

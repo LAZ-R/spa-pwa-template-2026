@@ -3,7 +3,7 @@
   .lzr-input {
     box-sizing: border-box;
     padding: 8px;
-    border-radius: var(--border-radius--button);
+    border-radius: var(--border-radius--default);
     background-color: var(--color--bg-default);
     color: var(--color--fg-default);
     font-size: 16px;
