@@ -1,9 +1,9 @@
-var cacheName = 'spa-pwa-template-2026-00010';
+var cacheName = 'spa-pwa-template-2026-00011';
 var filesToCache = [
   './',
   './index.html',
-  './css/main.css',
-  './js/main.js'
+  './css/style.css',
+  './js/app.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
@@ -25,4 +25,4 @@ self.addEventListener('fetch', function(e) {
   );
 });
 
-const version = '0.0.0.10';
+const version = '0.0.0.11';
