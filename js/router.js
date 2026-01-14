@@ -9,14 +9,8 @@
  * Objectif: récupère la base de l'URL à injecter dans les routes.
  * - En local : "/" (ex: http://localhost:5500/)
  * - Sur GitHub Pages : "/mon-repo/" (ex: https://user.github.io/mon-repo/)
- * 
- * ⚠️ Important : cette déduction est correcte si l'app “démarre” sur la racine du site/de l’app (PWA start_url, page d’entrée, etc.).
- * Si tu fais du deep-link direct (ex: /mon-repo/settings) sans fallback serveur,
- * location.pathname vaudra "/mon-repo/settings" et ce calcul ne donnera plus un vrai base path.
  */
-export const APP_BASE_PATH = location.pathname.endsWith('/')
-  ? location.pathname
-  : `${location.pathname}/`;
+export const APP_BASE_PATH = new URL('../', import.meta.url).pathname;
 
 /**
  * Table de routes internes
@@ -27,8 +21,9 @@ export const APP_BASE_PATH = location.pathname.endsWith('/')
  *   export function render() { ... }
  */
 const routes = {
+  '/':         () => import('./views/homepage/homepage.view.js'),
   '/settings': () => import('./views/settings/settings.view.js'),
-  '/':         () => import('./views/homepage/homepage.view.js'), // fallback racine
+  '/404':      () => import('./views/not-found/not-found.view.js'),
 };
 
 /**
@@ -98,7 +93,7 @@ export async function renderURL(urlString) {
     const appPath = normalizePath(rawPath);
 
     // 3) lookup route interne (fallback "/")
-    const loadPageModule = routes[appPath] || routes['/'];
+    const loadPageModule = routes[appPath] || routes['/404'];
 
     // 4) import dynamique du module de page
     const pageModule = await loadPageModule();
