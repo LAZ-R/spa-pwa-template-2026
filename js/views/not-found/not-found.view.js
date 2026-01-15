@@ -1,7 +1,5 @@
 import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
-import { onThemeClick } from "../../services/settings-service.js";
-import { getStorageDom, getUser, setUser } from "../../services/storage.service.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
 const HEADER = document.getElementById('header');

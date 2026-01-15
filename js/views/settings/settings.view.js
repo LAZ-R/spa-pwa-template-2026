@@ -1,5 +1,6 @@
 import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
+import * as settingsService from "../../services/settings-service.js"; // pour les onClick
 import { getUser } from "../../services/storage.service.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////

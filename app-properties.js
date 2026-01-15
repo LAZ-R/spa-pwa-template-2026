@@ -1,5 +1,5 @@
 export const APP_NAME = "SPA PWA Template 2026";
-export const APP_VERSION = '0.0.0.13';
+export const APP_VERSION = '0.0.0.14';
 export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0001`;
 
 /* 
@@ -14,6 +14,7 @@ export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0001`;
 
 # CHANGELOG ###############################################
 
+v 0.0.0.14 - fix import onclick settings
 v 0.0.0.13 - déplacement getStorageDom + style focus visible main + gestion "install PWA perso" + gestion routing externe
 v 0.0.0.12 - gestion focus sur main à la navigation + optimisation SW (gestion du cache + supression de l'ancien cache)
 v 0.0.0.11 - passage icon 152 à 180 pour apple + move à la racine
