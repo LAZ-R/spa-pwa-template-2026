@@ -3,6 +3,7 @@ import { APP_LOCAL_STORAGE_ID, APP_NAME } from "../../app-properties.js";
 const PWA_DISMISS_KEY = `${APP_LOCAL_STORAGE_ID}pwaInstallDismissedAt`;
 const PWA_DISMISS_COOLDOWN_DAYS = 14;
 const installContainer = document.getElementById('pwaInstallContainer');
+let deferredInstallPrompt = null;
 
 function isPromptDismissedRecently() {
   const raw = localStorage.getItem(PWA_DISMISS_KEY);
@@ -77,7 +78,6 @@ function hideInstallPwaMessage() {
 }
 
 export function installPwa() {
-  let deferredInstallPrompt = null;
 
   window.addEventListener('beforeinstallprompt', (event) => {
     // Le navigateur dit : "cette app est installable"
