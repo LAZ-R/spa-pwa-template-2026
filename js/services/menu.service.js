@@ -27,21 +27,21 @@ export function setMenuDom() {
   for (let entry of ENTRIES) {
     if (entry.primary) {
       tabBarStr += `
-      <a id="${entry.id}TabBarLink" href="${normalizePath(entry.route)}" class="tab-bar-button">
+      <a id="${entry.id}TabBarLink" href="${toExternalPath(entry.route)}" class="tab-bar-button">
         ${getSvgIcon(entry.iconName, 'l', 'var(--color--fg-default)')}
         <label>${entry.label}</label>
       </a>`;
       tabBarButtonsCount += 1;
     } else {
       sideBarStr += `
-      <a href="${normalizePath(entry.route)}" class="side-bar-button">
+      <a href="${toExternalPath(entry.route)}" class="side-bar-button">
         ${getSvgIcon(entry.iconName, 'l', 'var(--color--fg-default)')}
         <label>${entry.label}</label>
       </a>`;
     }
   
     headerMenuStr += `
-    <a id="${entry.id}HeaderMenuLink" href="${normalizePath(entry.route)}" class="header-menu-button lzr-button lzr-flat">
+    <a id="${entry.id}HeaderMenuLink" href="${toExternalPath(entry.route)}" class="header-menu-button lzr-button lzr-flat">
       ${getSvgIcon(entry.iconName, 'm', 'var(--color--fg-default)')}
       <span>${entry.label}</span>
     </a>
