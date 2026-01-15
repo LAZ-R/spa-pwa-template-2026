@@ -102,6 +102,7 @@ export async function renderURL(urlString) {
     const applyDOMUpdates = () => {
       try {
         pageModule.render(); // peut throw (innerHTML d’une variable undef, etc.)
+        document.getElementById('main')?.focus();
       } catch (err) {
         console.error('[render() error]', err);
         throw err; // rethrow pour que l’échec remonte au handler de navigation

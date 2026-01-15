@@ -1,8 +1,30 @@
 export const APP_NAME = "SPA PWA Template 2026";
-export const APP_VERSION = '0.0.0.11';
+export const APP_VERSION = '0.0.0.12';
 export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0001`;
 
+/* 
+# TODO ####################################################
 
-// CHANGELOG
+- Ajouter  le prompt d'installation PWA
+	
+- Avec le CSS
+	- le plus complet et à jour possible (fouiller dans les projets récents)
+	- le mieux organisé possible (dossier à renomer en "form elements", etc)
+	
+- Nouvelle gestion de la bibliothèque UTILS
 
-// v 0.0.0.11 - passage icon 152 à 180 pour apple + move à la racine
+# CHANGELOG ###############################################
+
+v 0.0.0.12 - gestion focus sur main à la navigation + optimisation SW (gestion du cache + supression de l'ancien cache)
+v 0.0.0.11 - passage icon 152 à 180 pour apple + move à la racine
+v 0.0.0.10 - ajout logique deep-link : 404.html, gestion redirect dans app.js, upgrade router, fix live server pour local + view 404
+v 0.0.0.9 - doc router + fix css icons bloc + fix css taille radio et checkbox
+v 0.0.0.8 - test version router épurée
+v 0.0.0.7 - suite rework CSS + checkbox + déplacement fonctions settings + toasts
+v 0.0.0.6 - début rework CSS + rework Theme selector + suppression fichiers inutiles
+v 0.0.0.5 - path console.log() clean + suppression images inutiles
+v 0.0.0.4 - fix footer settings
+v 0.0.0.3 - clean fichiers + css léger
+v 0.0.0.2 - fix get path
+v 0.0.0.1 - init
+*/
