@@ -21,7 +21,7 @@ This is mostly a *proof of concept* so the code here is awfull, I know.
 
 ## Changelog
 
-- v 0.0.0.16 - gestion menu: "tab bar" + "header settings" pour mobile et "header menu" pour laptop or up
+- v 0.0.0.17 - ajout titres pages sur main pour laptop or up + styling + légers fix divers
 
 ---
 

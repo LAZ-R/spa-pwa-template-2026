@@ -4,7 +4,7 @@ import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { updateMenuDom } from "../../services/menu.service.js";
 import { showToast } from "../../services/toast.service.js";
-import { isLaptopOrUp, isPhone } from "../../utils/breakpoints.js";
+import { isLaptopOrUp, isPhone, isTablet } from "../../utils/breakpoints.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
 const HEADER_ICON_CONTAINER = document.getElementById('headerIconContainer');
@@ -17,17 +17,17 @@ const FOOTER = document.getElementById('footer');
 
 export function render() {
   // Set HEADER layout
-  if (isPhone) {
+  if (isPhone || isTablet) {
     HEADER_TITLE.innerHTML = APP_NAME;
   }
   if (isLaptopOrUp) {
-    HEADER_ICON_CONTAINER.innerHTML = `<a href="${toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>`;
     HEADER_TITLE.innerHTML = APP_NAME;
   }
 
   // Set MAIN layout
   MAIN.innerHTML = `
-    <div class="homepage-container">
+    <div class="page-container">
+      ${ isLaptopOrUp ? `<h1>Accueil</h1>` : ''}
       <p class="lzr-margin-bottom">
         Bienvenue sur mon template personnel de SPA PWA (Single Page Application, Progressive Web App).
       </p>

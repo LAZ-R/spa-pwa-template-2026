@@ -2,7 +2,7 @@ import { APP_NAME } from "../../../app-properties.js";
 import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { updateMenuDom } from "../../services/menu.service.js";
-import { isLaptopOrUp, isPhone } from "../../utils/breakpoints.js";
+import { isLaptopOrUp, isPhone, isTablet } from "../../utils/breakpoints.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
 const HEADER_ICON_CONTAINER = document.getElementById('headerIconContainer');
@@ -15,20 +15,16 @@ const FOOTER = document.getElementById('footer');
 
 export function render() {
   // Set HEADER layout
-    if (isPhone) {
-      HEADER_ICON_CONTAINER.innerHTML = '';
+    if (isPhone || isTablet) {
       HEADER_TITLE.innerHTML = '';
-      HEADER_SETTINGS_NAV.innerHTML = ``;
     }
     if (isLaptopOrUp) {
-      HEADER_ICON_CONTAINER.innerHTML = `<a href="${toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>`;
       HEADER_TITLE.innerHTML = APP_NAME;
-      HEADER_SETTINGS_NAV.innerHTML = '';
     }
 
   // Set MAIN layout
   MAIN.innerHTML = `
-    <div class="homepage-container">
+    <div class="page-container">
       <h1 style="margin: 64px auto 32px auto; font-size: 128px; font-weight: 800;">404</h1>
       <h2 style="margin: 32px auto 32px auto; font-size: 32px; font-weight: 900;">PAGE NON TROUVÉE</h2>
       <p>

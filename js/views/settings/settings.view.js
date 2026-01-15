@@ -4,7 +4,7 @@ import { getSvgIcon } from "../../services/icons.service.js";
 import { updateMenuDom } from "../../services/menu.service.js";
 import * as settingsService from "../../services/settings-service.js"; // pour les onClick
 import { getUser } from "../../services/storage.service.js";
-import { isLaptopOrUp, isPhone } from "../../utils/breakpoints.js";
+import { isLaptopOrUp, isPhone, isTablet } from "../../utils/breakpoints.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
 const HEADER_ICON_CONTAINER = document.getElementById('headerIconContainer');
@@ -18,18 +18,17 @@ export function render() {
   let user = getUser();
 
   // Set HEADER layout
-    if (isPhone) {
+    if (isPhone || isTablet) {
       HEADER_TITLE.innerHTML = 'Paramètres';
     }
     if (isLaptopOrUp) {
-      HEADER_ICON_CONTAINER.innerHTML = `<a href="${toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>`;
       HEADER_TITLE.innerHTML = APP_NAME;
     }
 
   // Set MAIN layout
   MAIN.innerHTML = `
-  <div class="settings-container">
-
+  <div class="page-container">
+    ${ isLaptopOrUp ? `<h1>Paramètres</h1>` : ''}
     <div class="setting-block">
       <span>Conserver l'écran allumé</span>
       <label class="lzr-switch">

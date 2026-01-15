@@ -1,5 +1,6 @@
 import { APP_NAME, APP_VERSION } from "../app-properties.js";
 import * as Router from "./router.js";
+import { getSvgIcon } from "./services/icons.service.js";
 import { setMenuDom } from "./services/menu.service.js";
 import { getUser, setStorage } from "./services/storage.service.js";
 import { installPwa, setAndShowInstallPwaMessage } from "./utils/install-pwa.js";
@@ -20,6 +21,7 @@ if (user.KEEP_SCREEN_AWAKE) {
 document.getElementsByClassName('lzr')[0].style = `--theme: '${user.PREFERED_THEME}';`;
 
 setMenuDom();
+document.getElementById('headerIconContainer').innerHTML = `<a href="${Router.toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>`;
 
 // Log path related infos
 console.groupCollapsed('Path informations');

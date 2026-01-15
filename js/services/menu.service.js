@@ -1,5 +1,4 @@
 import { normalizePath, toExternalPath } from "../router.js";
-import { isLaptopOrUp, isPhone } from "../utils/breakpoints.js";
 import { getSvgIcon } from "./icons.service.js";
 
 export const ENTRIES = [
@@ -42,7 +41,7 @@ export function setMenuDom() {
     }
   
     headerMenuStr += `
-    <a id="${entry.id}HeaderMenuLink" href="${normalizePath(entry.route)}" class="header-menu-button lzr-button lzr-pill lzr-flat">
+    <a id="${entry.id}HeaderMenuLink" href="${normalizePath(entry.route)}" class="header-menu-button lzr-button lzr-flat">
       ${getSvgIcon(entry.iconName, 'm', 'var(--color--fg-default)')}
       <span>${entry.label}</span>
     </a>

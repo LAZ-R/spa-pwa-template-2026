@@ -513,8 +513,8 @@
   --height--header: if(
     /* PHONE */ media(width < 767px):  54px;
     /* TABLET */media(width < 1280px): 54px;
-    /* LAPTOP */media(width < 1920px): 54px;
-    /* DESKTOP */ else:                54px;
+    /* LAPTOP */media(width < 1920px): 64px;
+    /* DESKTOP */ else:                64px;
   );
 
 
@@ -533,7 +533,7 @@
   /* menu mobile height */
   --height--tab-bar: if(
     /* PHONE */ media(width < 767px):  calc(8px + 16px + 8px + 24px + 8px);
-    /* TABLET */media(width < 1280px): 0px;
+    /* TABLET */media(width < 1280px): calc(8px + 16px + 8px + 24px + 8px);
     /* LAPTOP */media(width < 1920px): 0px;
     /* DESKTOP */ else:                0px;
   );

@@ -4,7 +4,7 @@ import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { updateMenuDom } from "../../services/menu.service.js";
 import { showToast } from "../../services/toast.service.js";
-import { isLaptopOrUp, isPhone } from "../../utils/breakpoints.js";
+import { isLaptopOrUp, isPhone, isTablet } from "../../utils/breakpoints.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
 const HEADER_ICON_CONTAINER = document.getElementById('headerIconContainer');
@@ -28,17 +28,17 @@ const options = `
 
 export function render() {
   // Set HEADER layout
-  if (isPhone) {
-      HEADER_TITLE.innerHTML = 'Composants CSS';
-    }
-    if (isLaptopOrUp) {
-      HEADER_ICON_CONTAINER.innerHTML = `<a href="${toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>`;
-      HEADER_TITLE.innerHTML = APP_NAME;
-    }
+  if (isPhone || isTablet) {
+    HEADER_TITLE.innerHTML = 'Composants CSS';
+  }
+  if (isLaptopOrUp) {
+    HEADER_TITLE.innerHTML = APP_NAME;
+  }
 
   // Set MAIN layout
   MAIN.innerHTML = `
-    <div class="homepage-container">
+    <div class="page-container">
+      ${ isLaptopOrUp ? `<h1>Composants CSS</h1>` : ''}
       <p class="lzr-margin-bottom">
         Ici, vous retrouverez la page de démo de mes composants en <span class="lzr-special-tag html"">HTML</span> <span class="lzr-special-tag css"">CSS</span> <span class="lzr-special-tag javascript"">JS</span>.
       </p>

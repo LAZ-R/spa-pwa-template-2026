@@ -14,6 +14,7 @@ export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0001`;
 
 # CHANGELOG ###############################################
 
+v 0.0.0.17 - ajout titres pages sur main pour laptop or up + styling + légers fix divers
 v 0.0.0.16 - gestion menu: "tab bar" + "header settings" pour mobile et "header menu" pour laptop or up
 v 0.0.0.15 - ajout delay sur affichage popup install pwa + ajout cooldown si refus
 v 0.0.0.14 - fix import onclick settings
