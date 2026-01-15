@@ -1,7 +1,7 @@
 import { APP_NAME, APP_VERSION } from "../app-properties.js";
 import * as Router from "./router.js";
 import { getUser, setStorage } from "./services/storage.service.js";
-import { installPwa, showMessage } from "./utils/install-pwa.js";
+import { installPwa, setAndShowInstallPwaMessage } from "./utils/install-pwa.js";
 import { setHTMLTitle, logAppInfos } from "./utils/UTILS.js";
 import { requestWakeLock } from "./utils/wakelock.js";
 
@@ -51,5 +51,5 @@ if (redirected) {
 
 installPwa();
 /* setTimeout(() => {
-  showMessage();
+  setAndShowInstallPwaMessage();
 }, 2000); */

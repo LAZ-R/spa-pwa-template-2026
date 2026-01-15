@@ -1,25 +1,25 @@
-import { APP_NAME } from "../../app-properties.js";
+import { APP_LOCAL_STORAGE_ID, APP_NAME } from "../../app-properties.js";
 
-export function showMessage() {
-  const installContainer = document.getElementById('pwaInstallContainer');
-  installContainer.classList.add('exist');
-  setTimeout(() => {
-    installContainer.classList.add('visible');
-  }, 10);
+const PWA_DISMISS_KEY = `${APP_LOCAL_STORAGE_ID}pwaInstallDismissedAt`;
+const PWA_DISMISS_COOLDOWN_DAYS = 14;
+const installContainer = document.getElementById('pwaInstallContainer');
+
+function isPromptDismissedRecently() {
+  const raw = localStorage.getItem(PWA_DISMISS_KEY);
+  if (!raw) return false;
+
+  const dismissedAt = Number(raw);
+  if (!Number.isFinite(dismissedAt)) return false;
+
+  const msCooldown = PWA_DISMISS_COOLDOWN_DAYS * 24 * 60 * 60 * 1000;
+  return (Date.now() - dismissedAt) < msCooldown;
 }
 
-function hideMessage() {
-  const installContainer = document.getElementById('pwaInstallContainer');
-  installContainer.classList.remove('visible');
-  setTimeout(() => {
-    installContainer.classList.remove('exist');
-  }, 200);
+function setPromptDismissed() {
+  localStorage.setItem(PWA_DISMISS_KEY, String(Date.now()));
 }
 
-export function installPwa() {
-  let deferredInstallPrompt = null;
-  const installContainer = document.getElementById('pwaInstallContainer'); // ton container caché par défaut
-
+function setContainerDom() {
   installContainer.innerHTML = `
   <div id="pwaInstallBox" class="pwa-install-box">
     <span class="title">Installation PWA disponible !</span>
@@ -36,17 +36,12 @@ export function installPwa() {
     </div>
   </div>
   `;
-  const installBtn = document.getElementById('pwaInstallButton'); // ton bouton pour installer
-  const noInstallBtn = document.getElementById('pwaNoInstallButton'); // ton bouton pour installer
+}
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    // Le navigateur dit : "cette app est installable"
-    console.log('installable event');
-    e.preventDefault();                 // on garde la main
-    deferredInstallPrompt = e;          // on stocke l'événement
-    showMessage(); // on montre ton UI
-  });
-
+export function setAndShowInstallPwaMessage() {
+  setContainerDom();
+  const installBtn = document.getElementById('pwaInstallButton'); // bouton pour installer
+  const noInstallBtn = document.getElementById('pwaNoInstallButton'); // bouton pour ne pas installer
   installBtn.addEventListener('click', async () => {
     console.log('Tentative d\'installation');
     if (!deferredInstallPrompt) return;
@@ -57,19 +52,49 @@ export function installPwa() {
     // Attends la réponse user
     const { outcome } = await deferredInstallPrompt.userChoice;
     deferredInstallPrompt = null;
-    hideMessage();
+    hideInstallPwaMessage();
 
     // outcome: "accepted" ou "dismissed"
     console.log('Install outcome:', outcome);
   });
 
   noInstallBtn.addEventListener('click', async () => {
-    hideMessage();
+    setPromptDismissed();
+    hideInstallPwaMessage();
+  });
+
+  installContainer.classList.add('exist');
+  setTimeout(() => {
+    installContainer.classList.add('visible');
+  }, 10);
+}
+
+function hideInstallPwaMessage() {
+  installContainer.classList.remove('visible');
+  setTimeout(() => {
+    installContainer.classList.remove('exist');
+  }, 200);
+}
+
+export function installPwa() {
+  let deferredInstallPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+    // Le navigateur dit : "cette app est installable"
+    console.log('installable event');
+    event.preventDefault();                 // on garde la main
+    deferredInstallPrompt = event;          // on stocke l'événement
+
+    if (isPromptDismissedRecently()) return;
+
+    setTimeout(() => {
+      setAndShowInstallPwaMessage(); // on montre l'UI
+    }, 8000);
   });
 
   window.addEventListener('appinstalled', () => {
     console.log('PWA installed');
-    hideMessage();
+    hideInstallPwaMessage();
+    localStorage.removeItem(PWA_DISMISS_KEY);
   });
-
 }
