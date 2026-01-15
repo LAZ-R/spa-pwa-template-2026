@@ -122,14 +122,24 @@ export async function renderURL(urlString) {
   }
 }
 
-// Interception centralisée des navigations "same-document" (SPA)
+// Interception centralisée des navigations
 navigation.addEventListener('navigate', (navEvent) => {
   if (!navEvent.canIntercept) return;      // téléchargements, cross-origin…
   if (navEvent.hashChange) return;         // laisse #ancre au natif si tu veux
   if (navEvent.downloadRequest) return;    // on ne touche pas aux downloads
 
+  const dest = new URL(navEvent.destination.url);
+
+  // 1) si ce n’est pas le même origin → on laisse le navigateur faire
+  if (dest.origin !== location.origin) return;
+
+  // 2) si ça sort du base path de l’app → on laisse le navigateur faire
+  //    (ex: /autre-repo/ sur GH Pages)
+  if (APP_BASE_PATH !== '/' && !dest.pathname.startsWith(APP_BASE_PATH)) return;
+
+  // ✅ OK: on est dans le périmètre de l’app, on intercepte
   navEvent.intercept({
-    handler: () => renderURL(navEvent.destination.url),
+    handler: () => renderURL(dest.href),
   });
 });
 

@@ -1,7 +1,6 @@
 import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
-import { onThemeClick } from "../../services/settings-service.js";
-import { getStorageDom, getUser, setUser } from "../../services/storage.service.js";
+import { getUser } from "../../services/storage.service.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
 const HEADER = document.getElementById('header');
@@ -99,3 +98,22 @@ export function render() {
   `;
 }
 
+export function getStorageDom() {
+  return `
+    <div class="storage-option-container">
+      <h2>Exportation des données</h2>
+      <p>Génère un fichier de sauvegarde des données du stockage local au format .txt.</p>
+      <button class="lzr-button lzr-solid lzr-primary" onclick="onExportUserDataClick()">Exporter les données</button>
+    </div>
+
+    <hr>
+
+    <div class="storage-option-container">
+      <h2>Importation de données</h2>
+      <p>Importe un fichier de sauvegarde pour remplacer les données du stockage local.</p>
+      <p class="txt-error">Attention, il est important de n'utiliser qu'un fichier de sauvegarde au format .txt généré par cette application et non altéré. Sinon, ça VA planter.</p>
+      <p class="txt-error">Attention, le fichier de sauvegarde importé écrasera la sauvegarde actuelle.</p>
+      <input type="file" class="lzr-button lzr-solid lzr-error" onchange="onImportUserDataClick(event)" accept=".txt" />
+    </div>
+  `;
+}

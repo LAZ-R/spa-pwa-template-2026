@@ -8,32 +8,6 @@ export const setStorage = () => {
     STORAGE.setItem(`${appLocalStorageId}FirstTime`, '0');
     
     let userTMP = {
-      parks: [
-        {
-          id: 1,
-          name: 'Jardin 1',
-          time_spent: 0,
-          reputation: 0,
-          total_balance: 2500,
-          gain_per_seconds: 0,
-          cost_per_seconds: 5,
-          cells: [
-            {
-              xCoord : 0,
-              yCoord : 0,
-              isEmpty: false,
-              isEntrance: true,
-              isRoad: false,
-              roadId: null,
-              isPlant: false,
-              plantId: null,
-              isWater: false,
-              waterId: null,
-            },
-          ],
-          available_plants: [1, 2, 3, 4],
-        }
-      ],
       // SETTINGS
       KEEP_SCREEN_AWAKE: true,
       PREFERED_THEME: 'dark',
@@ -106,23 +80,3 @@ function onImportUserDataClick(event) {
   reader.readAsText(file);
 }
 window.onImportUserDataClick = onImportUserDataClick;
-
-export function getStorageDom() {
-  return `
-    <div class="storage-option-container">
-      <h2>Exportation des données</h2>
-      <p>Génère un fichier de sauvegarde des données du stockage local au format .txt.</p>
-      <button class="lzr-button lzr-solid lzr-primary" onclick="onExportUserDataClick()">Exporter les données</button>
-    </div>
-
-    <hr>
-
-    <div class="storage-option-container">
-      <h2>Importation de données</h2>
-      <p>Importe un fichier de sauvegarde pour remplacer les données du stockage local.</p>
-      <p class="txt-error">Attention, il est important de n'utiliser qu'un fichier de sauvegarde au format .txt généré par cette application et non altéré. Sinon, ça VA planter.</p>
-      <p class="txt-error">Attention, le fichier de sauvegarde importé écrasera la sauvegarde actuelle.</p>
-      <input type="file" class="lzr-button lzr-solid lzr-error" onchange="onImportUserDataClick(event)" accept=".txt" />
-    </div>
-  `;
-}
