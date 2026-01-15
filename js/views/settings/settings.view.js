@@ -1,10 +1,14 @@
+import { APP_NAME, APP_VERSION } from "../../../app-properties.js";
 import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
+import { updateMenuDom } from "../../services/menu.service.js";
 import * as settingsService from "../../services/settings-service.js"; // pour les onClick
 import { getUser } from "../../services/storage.service.js";
+import { isLaptopOrUp, isPhone } from "../../utils/breakpoints.js";
 
 // VARIABLES //////////////////////////////////////////////////////////////////////////////////////
-const HEADER = document.getElementById('header');
+const HEADER_ICON_CONTAINER = document.getElementById('headerIconContainer');
+const HEADER_TITLE = document.getElementById('headerTitle');
 const MAIN = document.getElementById('main');
 const FOOTER = document.getElementById('footer');
 
@@ -14,14 +18,17 @@ export function render() {
   let user = getUser();
 
   // Set HEADER layout
-  HEADER.innerHTML = `
-  <a href="${toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>
-  `;
+    if (isPhone) {
+      HEADER_TITLE.innerHTML = 'Paramètres';
+    }
+    if (isLaptopOrUp) {
+      HEADER_ICON_CONTAINER.innerHTML = `<a href="${toExternalPath('/')}" class="centered-link">${getSvgIcon('lzr', 'xl', 'var(--color--primary)')}</a>`;
+      HEADER_TITLE.innerHTML = APP_NAME;
+    }
 
   // Set MAIN layout
   MAIN.innerHTML = `
   <div class="settings-container">
-    <h1>Paramètres</h1>
 
     <div class="setting-block">
       <span>Conserver l'écran allumé</span>
@@ -86,17 +93,22 @@ export function render() {
           </div>
         </div>
       </div>
-    </div>    
+    </div>  
+    
+    <span style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; width: 100%; margin-top: auto;">
+      <span>v${APP_VERSION}</span>
+      <span style="display: flex; justify-content: center; align-items: center; gap: 8px;">
+        <span>Copyright ©2025-${new Date().getFullYear()}</span>
+        <a class="lzr-button lzr-flat lzr-primary" href="https://laz-r.github.io/store/" target="_blank">LAZ-R</a>
+      </span>
+    </span>
   </div>
   `;
 
   // Set FOOTER layout
-  FOOTER.innerHTML = `
-  <span style="display: flex; justify-content: center; align-items: center; gap: 8px;">
-    <span>Copyright ©2025-${new Date().getFullYear()}</span>
-    <a class="lzr-button lzr-flat lzr-primary" href="https://laz-r.github.io/store/" target="_blank">LAZ-R</a>
-  </span>
-  `;
+  FOOTER.innerHTML = ``;
+
+  updateMenuDom('settings');
 }
 
 export function getStorageDom() {

@@ -68,18 +68,18 @@
 
 @-webkit-keyframes toast-in {
   0% { bottom: -40px; }
-  100% { bottom: 16px; }
+  100% { bottom: calc(var(--height--tab-bar) + 16px); }
 }
 @keyframes toast-in {
   0% { bottom: -40px; }
-  100% { bottom: 16px; }
+  100% { bottom: calc(var(--height--tab-bar) + 16px); }
 }
 
 @-webkit-keyframes toast-out {
-  0% { bottom: 16px; }
+  0% { bottom: calc(var(--height--tab-bar) + 16px); }
   100% { bottom: -40px; }
 }
 @keyframes toast-out {
-  0% { bottom: 16px; }
+  0% { bottom: calc(var(--height--tab-bar) + 16px); }
   100% { bottom: -40px; }
 }

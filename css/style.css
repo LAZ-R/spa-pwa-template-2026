@@ -20,6 +20,9 @@
 
 /* Menu */
 @import url("./core/menu/menu.css");
+@import url("./core/menu/tab-bar.css");
+@import url("./core/menu/side-bar.css");
+@import url("./core/menu/header-menu.css");
 
 @import url("./core/toast.css");
 @import url("./core/icon.css");
@@ -34,6 +37,7 @@
 header { view-transition-name: header; } /* si tu veux animer le header */
 main   { view-transition-name: main; }   /* si tu veux animer le main */
 footer { view-transition-name: footer; } /* si tu veux animer le footer */
+.tab-bar { view-transition-name: tab-bar; }
 
 /* Slide horizontale */
 /* ::view-transition-old(main) { animation: slideOutLeft 0.3s ease-in; }
@@ -74,6 +78,7 @@ ul {
   align-items: flex-start;
   padding: 8px var(--horizontal-padding);
   width: 100%;
+  min-height: 100%;
 }
 
 .setting-block {

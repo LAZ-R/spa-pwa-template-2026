@@ -21,9 +21,10 @@ export const APP_BASE_PATH = new URL('../', import.meta.url).pathname;
  *   export function render() { ... }
  */
 const routes = {
-  '/':         () => import('./views/homepage/homepage.view.js'),
-  '/settings': () => import('./views/settings/settings.view.js'),
-  '/404':      () => import('./views/not-found/not-found.view.js'),
+  '/':               () => import('./views/homepage/homepage.view.js'),
+  '/css-components': () => import('./views/css-components/css-components.view.js'),
+  '/settings':       () => import('./views/settings/settings.view.js'),
+  '/404':            () => import('./views/not-found/not-found.view.js'),
 };
 
 /**

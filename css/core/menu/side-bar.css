@@ -1,0 +1,33 @@
+.lzr {
+  .lzr-side-bar {
+    --side-bar-width: 200px;
+    position: absolute;
+    bottom: var(--height--tab-bar);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: var(--side-bar-width); width: var(--side-bar-width); max-width: var(--side-bar-width);
+    min-height: var(--height--side-bar); height: var(--height--side-bar); max-height: var(--height--side-bar);
+    background-color: magenta;
+
+    &:hidden {
+      
+    }
+
+    .side-bar-button {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      background-color: aqua;
+      border: none;
+      padding: 16px;
+      gap: 16px;
+
+      text-decoration: none;
+      font-size: 16px;
+      color: var(--color--fg-default);
+      font-weight: 600;
+    }
+  }
+}

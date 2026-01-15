@@ -511,23 +511,38 @@
 
   /* header height */
   --height--header: if(
-    /* PHONE */ media(width < 767px):  64px;
-    /* TABLET */media(width < 1280px): 64px;
-    /* LAPTOP */media(width < 1920px): 64px;
-    /* DESKTOP */ else:                64px;
+    /* PHONE */ media(width < 767px):  54px;
+    /* TABLET */media(width < 1280px): 54px;
+    /* LAPTOP */media(width < 1920px): 54px;
+    /* DESKTOP */ else:                54px;
   );
 
 
   /* main height */
-  --height--main: calc(100svh - var(--height--header) - var(--height--footer));
+  --height--main: calc(100svh - var(--height--header) - var(--height--footer) - var(--height--tab-bar));
 
 
   /* footer height */
   --height--footer: if(
-    /* PHONE */ media(width < 767px):  48px;
-    /* TABLET */media(width < 1280px): 48px;
-    /* LAPTOP */media(width < 1920px): 48px;
-    /* DESKTOP */ else:                48px;
+    /* PHONE */ media(width < 767px):  0px;
+    /* TABLET */media(width < 1280px): 0px;
+    /* LAPTOP */media(width < 1920px): 0px;
+    /* DESKTOP */ else:                0px;
+  );
+
+  /* menu mobile height */
+  --height--tab-bar: if(
+    /* PHONE */ media(width < 767px):  calc(8px + 16px + 8px + 24px + 8px);
+    /* TABLET */media(width < 1280px): 0px;
+    /* LAPTOP */media(width < 1920px): 0px;
+    /* DESKTOP */ else:                0px;
+  );
+
+  --height--side-bar: if(
+    /* PHONE */ media(width < 767px):  calc(100svh - var(--height--tab-bar));
+    /* TABLET */media(width < 1280px): 0px;
+    /* LAPTOP */media(width < 1920px): 0px;
+    /* DESKTOP */ else:                0px;
   );
 
   /* ------------------------------------------------------------------------

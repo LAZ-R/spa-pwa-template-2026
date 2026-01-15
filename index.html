@@ -18,9 +18,20 @@
   </head>
 
   <body id="body" class="lzr-body">
-    <header id="header" class="lzr-header"></header>
+    <header id="header" class="lzr-header">
+      <div id="headerIconContainer" class="header-icon-container"></div>
+      <span id="headerTitle" class="header-title">APP_NAME</span>
+      <nav id="headerMenu" class="header-menu" class="lzr-header-menu"></nav>
+      <nav class="header-settings-nav">
+        <a id="headerSettingsNav" class="lzr-button lzr-flat lzr-square header-settings-button">
+          ${getSvgIcon('gear', 'm')}
+        </a>
+      </nav>
+    </header>
     <main id="main" class="lzr-main" tabindex="-1" aria-live="polite"></main>
     <footer id="footer" class="lzr-footer"></footer>
+    <nav id="tabBar" class="lzr-tab-bar"></nav>
+    <!-- <nav id="sideBar" class="lzr-side-bar"></nav> -->
     <div id="toastContainer"></div>
     <div id="pwaInstallContainer" class="pwa-install-container hidden"></div>
   </body>
