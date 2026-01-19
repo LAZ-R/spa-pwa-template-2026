@@ -28,89 +28,64 @@ export function render() {
 
   // Set MAIN layout
   MAIN.innerHTML = `
-  <div class="page-container" style="min-height: 100%;">
-    ${ isLaptopOrUp ? `<h1>Paramètres</h1>` : ''}
-
-    <div class="setting-block">
-      <span>Conserver l'écran allumé</span>
-      <label class="lzr-switch">
-        <input type="checkbox" onclick="onKeepScreenAwakeClick(event)" ${user.KEEP_SCREEN_AWAKE ? 'checked' : ''} />
-        <span class="slider"></span>
-      </label>
-    </div>
+  <div class="page-container">
+    ${ isLaptopOrUp ? `<h1>Paramètres</h1>` : '' }
 
     <h2>Accessibilité</h2>
 
-    <div class="setting-block">
-      <span>Police "Open-Dyslexic"</span>
-      <label class="lzr-switch">
-        <input type="checkbox" onclick="onOpenDyslexicClick(event)" ${user.IS_ACCESSIBLE_FONT ? 'checked' : ''} />
-        <span class="slider"></span>
-      </label>
+    <div class="settings-group">
+      <div class="setting-block">
+        <span>Conserver l'écran allumé</span>
+        <label class="lzr-switch">
+          <input type="checkbox" onclick="onKeepScreenAwakeClick(event)" ${user.KEEP_SCREEN_AWAKE ? 'checked' : ''} />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-block">
+        <span>Police "Open-Dyslexic"</span>
+        <label class="lzr-switch">
+          <input type="checkbox" onclick="onOpenDyslexicClick(event)" ${user.IS_ACCESSIBLE_FONT ? 'checked' : ''} />
+          <span class="slider"></span>
+        </label>
+      </div>
     </div>
+      
+    <hr> <!-- ------------------------------------------------------------- -->
 
-    <div class="drawers-container">
-      <div class="lzr-drawer">
-        <div class="tile-header">
-          ${getSvgIcon('palette', 'm')}
-          <div>
-            <span class="header-title">Thème</span>
+    <h2>Thème</h2>
+
+    <div class="settings-group">
+      <div id="themesContainer" class="themes-container">
+        <div class="lzr-radio-group">
+          <div class="lzr-radio-raw" onclick="onThemeClick('dark')">
+            <label for="dark">Sombre</label>
+            <input type="radio" class="lzr-radio" id="dark" name="theme" value="dark" ${user.PREFERED_THEME == 'dark' ? 'checked' : ''} />
           </div>
-          <div class="tile-caret">
-            ${getSvgIcon('chevron-right', 'm', null)}
+
+          <div class="lzr-radio-raw" onclick="onThemeClick('light')">
+            <label for="light">Clair</label>
+            <input type="radio" class="lzr-radio" id="light" name="theme" value="light" ${user.PREFERED_THEME == 'light' ? 'checked' : ''} />
           </div>
-          <input type="checkbox">
-        </div>
-        <div class="expandable-wrapper">
-          <div class="expandable-inner">
-            <div class="inner-body">
-              <div id="themesContainer" class="themes-container">
-                <div class="lzr-radio-group">
-                  <div class="lzr-radio-raw" onclick="onThemeClick('dark')">
-                    <input type="radio" class="lzr-radio" id="dark" name="theme" value="dark" ${user.PREFERED_THEME == 'dark' ? 'checked' : ''} />
-                    <label for="dark">Sombre</label>
-                  </div>
 
-                  <div class="lzr-radio-raw" onclick="onThemeClick('light')">
-                    <input type="radio" class="lzr-radio" id="light" name="theme" value="light" ${user.PREFERED_THEME == 'light' ? 'checked' : ''} />
-                    <label for="light">Clair</label>
-                  </div>
-
-                  <div class="lzr-radio-raw" onclick="onThemeClick('alternative')">
-                    <input type="radio" class="lzr-radio" id="alternative" name="theme" value="alternative" ${user.PREFERED_THEME == 'alternative' ? 'checked' : ''} />
-                    <label for="alternative">Alternatif</label>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="lzr-radio-raw" onclick="onThemeClick('alternative')">
+            <label for="alternative">Alternatif</label>
+            <input type="radio" class="lzr-radio" id="alternative" name="theme" value="alternative" ${user.PREFERED_THEME == 'alternative' ? 'checked' : ''} />
           </div>
         </div>
       </div>
-
-      <div class="lzr-drawer">
-        <div class="tile-header">
-          ${getSvgIcon('database', 'm')}
-          <div>
-            <span class="header-title">Stockage</span>
-          </div>
-          <div class="tile-caret">
-            ${getSvgIcon('chevron-right', 'm', null)}
-          </div>
-          <input type="checkbox">
-        </div>
-        <div class="expandable-wrapper">
-          <div class="expandable-inner">
-            <div class="inner-body">
-              ${getStorageDom()}
-            </div>
-          </div>
-        </div>
-      </div>  
     </div>
 
-    <h2>Credits</h2>
+    <hr> <!-- ------------------------------------------------------------- -->
 
+    <h2>Stockage</h2>
+    ${getStorageDom()}
+
+    <hr> <!-- ------------------------------------------------------------- -->
+
+    <h2>Crédits</h2>
     ${getCreditsDom()}
+
+    <hr> <!-- ------------------------------------------------------------- -->
     
     <div class="bottom-block">
         <span>${APP_NAME} - v ${APP_VERSION}</span>
@@ -129,31 +104,82 @@ export function render() {
 }
 
 export function getStorageDom() {
+
+  function getExportStorageDom() {
+    return `
+      <div class="storage-option-container">
+        <h2>Exportation des données</h2>
+        <p>Génère un fichier de sauvegarde des données du stockage local au format .txt.</p>
+        <button class="lzr-button lzr-solid lzr-primary" onclick="onExportUserDataClick()">Exporter les données</button>
+      </div>
+    `;
+  }
+  
+  function getImportStorageDom() {
+    return `
+      <div class="storage-option-container">
+        <h2>Importation de données</h2>
+        <p>Importe un fichier de sauvegarde pour remplacer les données du stockage local.</p>
+        <p class="txt-error">Attention, il est important de n'utiliser qu'un fichier de sauvegarde au format .txt généré par cette application et non altéré. Sinon, ça VA planter.</p>
+        <p class="txt-error">Attention, le fichier de sauvegarde importé écrasera la sauvegarde actuelle.</p>
+        <input type="file" class="lzr-button lzr-solid lzr-error" onchange="onImportUserDataClick(event)" accept=".txt" />
+      </div>
+    `;
+  }
+
   return `
-    <div class="storage-option-container">
-      <h2>Exportation des données</h2>
-      <p>Génère un fichier de sauvegarde des données du stockage local au format .txt.</p>
-      <button class="lzr-button lzr-solid lzr-primary" onclick="onExportUserDataClick()">Exporter les données</button>
-    </div>
+    <div class="settings-group">
+      <div class="drawers-container">
+        <div class="lzr-drawer">
+          <div class="tile-header">
+            <div>
+              <span class="header-title">Exportation</span>
+            </div>
+            <div class="tile-caret">
+              ${getSvgIcon('chevron-right', 'm', null)}
+            </div>
+            <input type="checkbox">
+          </div>
+          <div class="expandable-wrapper">
+            <div class="expandable-inner">
+              <div class="inner-body">
+                ${getExportStorageDom()}
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <hr>
-
-    <div class="storage-option-container">
-      <h2>Importation de données</h2>
-      <p>Importe un fichier de sauvegarde pour remplacer les données du stockage local.</p>
-      <p class="txt-error">Attention, il est important de n'utiliser qu'un fichier de sauvegarde au format .txt généré par cette application et non altéré. Sinon, ça VA planter.</p>
-      <p class="txt-error">Attention, le fichier de sauvegarde importé écrasera la sauvegarde actuelle.</p>
-      <input type="file" class="lzr-button lzr-solid lzr-error" onchange="onImportUserDataClick(event)" accept=".txt" />
+        <div class="lzr-drawer">
+          <div class="tile-header">
+            <div>
+              <span class="header-title">Importation</span>
+            </div>
+            <div class="tile-caret">
+              ${getSvgIcon('chevron-right', 'm', null)}
+            </div>
+            <input type="checkbox">
+          </div>
+          <div class="expandable-wrapper">
+            <div class="expandable-inner">
+              <div class="inner-body">
+                ${getImportStorageDom()}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   `;
 }
+
 
 export function getCreditsDom() {
   function getCreditDom(credit) {
     return `
       <div class="credit-block">
-        <span><b>${credit.name}</b> by ${credit.creator}</span>
-        <a href="${toExternalPath(credit.link)}" class="lzr-button lzr-flat" style="padding: 0;">${credit.link}</a>
+        <b>${credit.name}</b>
+        <span>by ${credit.creator}</span>
+        <a href="${toExternalPath(credit.link)}" class="lzr-button lzr-flat" style="margin: 0 auto;">${credit.link}</a>
       </div>
     `;
   }
