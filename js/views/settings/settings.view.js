@@ -35,7 +35,7 @@ export function render() {
 
     <div class="settings-group">
       <div class="setting-block">
-        <span>Conserver l'écran allumé</span>
+        <span>Garder l'écran allumé</span>
         <label class="lzr-switch">
           <input type="checkbox" onclick="onKeepScreenAwakeClick(event)" ${user.KEEP_SCREEN_AWAKE ? 'checked' : ''} />
           <span class="slider"></span>

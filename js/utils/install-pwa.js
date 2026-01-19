@@ -23,17 +23,17 @@ function setPromptDismissed() {
 function setContainerDom() {
   installContainer.innerHTML = `
   <div id="pwaInstallBox" class="pwa-install-box">
-    <span class="title">Installation PWA disponible !</span>
-    <p>${APP_NAME} est une PWA.</p>
-    <p>Une PWA (Progressive Web App) est un site web installable comme un programme ou une application.</p>
-    <p>Ceci permet notamment:</p>
-      <ul>
-        <li>D'exécuter l'application dans une fenêtre dédiée</li>
-        <li>De faire fonctionner l'application hors connexion</li>
-      </ul>
+    <span class="title">Installer l'application</span>
+    <p>
+      ${APP_NAME} peut être installée comme une application pour une expérience plus fluide.
+    </p>
+    <ul>
+      <li>Lancement rapide depuis l'écran d'accueil</li>
+      <li>Utilisable même hors connexion</li>
+    </ul>
     <div>
       <button id="pwaNoInstallButton" class="lzr-button lzr-solid">Non merci</button>
-      <button id="pwaInstallButton" class="lzr-button lzr-solid lzr-primary">Installer la PWA</button>
+      <button id="pwaInstallButton" class="lzr-button lzr-solid lzr-primary">Installer</button>
     </div>
   </div>
   `;

@@ -3,17 +3,15 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)  
 
-Version `0.0.0.22`
+Version `0.0.0.23`
 
 **[Tester la version déployée sur GitHub Pages](https://laz-r.github.io/spa-pwa-template-2026/)**
 
 ## Présentation
     
 Utilise les dernières optimisations web proposées par Chromium :
-
 - CSS imbriqué avec if
 - NavigationAPI et ViewTransitionAPI
-
 
 ---
 
@@ -21,7 +19,7 @@ This is mostly a *proof of concept* so the code here is awfull, I know.
 
 ## Changelog
 
-- v 0.0.0.22 - rework UX/UI settings
+- v 0.0.0.23 - rework theme alt + rename bg-alt en bg-html + rework wording sur pop up d'install
 
 ---
 

@@ -2,8 +2,8 @@
 
   .lzr-header {
     --bg-color: if(
-      /* PHONE */ media(width < 767px):  var(--color--bg-alt);
-      /* TABLET */media(width < 1280px): var(--color--bg-alt);
+      /* PHONE */ media(width < 767px):  var(--color--bg-html);
+      /* TABLET */media(width < 1280px): var(--color--bg-html);
       /* LAPTOP */media(width < 1920px): var(--color--bg-default);
       /* DESKTOP */ else:                var(--color--bg-default);
     );
