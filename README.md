@@ -21,7 +21,7 @@ This is mostly a *proof of concept* so the code here is awfull, I know.
 
 ## Changelog
 
-- v 0.0.0.20 - Ajout setting OpenDyslexia + gestion credits dans settings
+- v 0.0.0.21 - Ajout dossier "assets" qui contient les maskable icons, les fonts et autres medias
 
 ---
 

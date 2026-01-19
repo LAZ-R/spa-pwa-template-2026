@@ -5,20 +5,20 @@
 /* ==========================
  Inter
 ===========================*/
-@font-face { font-family: "inter-var"; src: url("../../../medias/fonts/inter/Inter.var.woff2") format("woff2"); }
-@font-face { font-family: "inter-var-italic"; src: url("../../../medias/fonts/inter/Inter-italic.var.woff2") format("woff2"); }
+@font-face { font-family: "inter-var"; src: url("../../../assets/fonts/inter/Inter.var.woff2") format("woff2"); }
+@font-face { font-family: "inter-var-italic"; src: url("../../../assets/fonts/inter/Inter-italic.var.woff2") format("woff2"); }
 
 
 /* ==========================
 Consolas
 ===========================*/
-@font-face { font-family: "consolas"; src: url("../../../medias/fonts/consolas/Consolas.woff2") format("woff2"); }
+@font-face { font-family: "consolas"; src: url("../../../assets/fonts/consolas/Consolas.woff2") format("woff2"); }
 
 /* ==========================
  Inter
 ===========================*/
-@font-face { font-family: "open-dyslexic"; src: url("../../../medias/fonts/open-dyslexic/OpenDyslexic-Regular.woff2") format("woff2"); }
-@font-face { font-family: "open-dyslexic-bold"; src: url("../../../medias/fonts/open-dyslexic/OpenDyslexic-Bold.woff2") format("woff2"); }
+@font-face { font-family: "open-dyslexic"; src: url("../../../assets/fonts/open-dyslexic/OpenDyslexic-Regular.woff2") format("woff2"); }
+@font-face { font-family: "open-dyslexic-bold"; src: url("../../../assets/fonts/open-dyslexic/OpenDyslexic-Bold.woff2") format("woff2"); }
 
 /* ---------------------------------------------------------------------- */
 

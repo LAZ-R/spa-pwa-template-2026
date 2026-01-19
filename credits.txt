@@ -1,9 +1,0 @@
-###############################################################################
-Fonts
-###############################################################################
-
-Inter by Rasmus Andersson
-https://rsms.me/inter/
-
-Open-Dyslexic by Abelardo Gonzalez
-https://antijingoist.itch.io/opendyslexic
