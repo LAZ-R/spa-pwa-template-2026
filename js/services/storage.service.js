@@ -10,6 +10,7 @@ export const setStorage = () => {
     let userTMP = {
       // SETTINGS
       KEEP_SCREEN_AWAKE: true,
+      IS_ACCESSIBLE_FONT: false,
       PREFERED_THEME: 'dark',
     };
     STORAGE.setItem(`${appLocalStorageId}User`, JSON.stringify(userTMP));

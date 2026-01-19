@@ -5,57 +5,81 @@
   /* COLORS */
   /* ####################################################################### */
 
+  /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  /* BASES */
+  /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+  /* =================================================== */
+  /* BACKGROUNDS */
+  /* =================================================== */
+
+  /* ------------------------------- */
+  /* DEFAULT */
+  /* ------------------------------- */
+
   --color--bg-default: if(
-    style(--theme: 'light'):       var(--color--bg-10);
-    style(--theme: 'dark'):        var(--color--bg-15);
-    style(--theme: 'alternative'): var(--color--bg-15);
+    style(--theme: 'light'):       var(--color--bg-10); /* (0, 0%, 90%) */
+    style(--theme: 'dark'):        var(--color--bg-15); /* (0, 0%, 15%) */
+    style(--theme: 'alternative'): var(--color--bg-15); /* (0, 0%, 15%) */
     else: #333333
   );
   --color--bg-default--hover: if(
-    style(--theme: 'light'):       var(--color--bg-15);
-    style(--theme: 'dark'):        var(--color--bg-20);
-    style(--theme: 'alternative'): var(--color--bg-20); 
+    style(--theme: 'light'):       var(--color--bg-15); /* (0, 0%, 85%) */
+    style(--theme: 'dark'):        var(--color--bg-20); /* (0, 0%, 20%) */
+    style(--theme: 'alternative'): var(--color--bg-20); /* (0, 0%, 20%) */
     else: #333333
   );
   --color--bg-default--active: if(
-    style(--theme: 'light'):       var(--color--bg-20);
-    style(--theme: 'dark'):        var(--color--bg-25);
-    style(--theme: 'alternative'): var(--color--bg-25); 
+    style(--theme: 'light'):       var(--color--bg-20); /* (0, 0%, 80%) */
+    style(--theme: 'dark'):        var(--color--bg-25); /* (0, 0%, 25%) */
+    style(--theme: 'alternative'): var(--color--bg-25); /* (0, 0%, 25%) */
     else: #333333
   );
-  --color--outline--default: hsla(0, 0%, 15%, 33%);
+  --color--outline--default: hsla(0, 0%, 15%, 33%); /* a variabiliser */
   --color--bg-default--alpha: if(
-    style(--theme: 'light'):       hsla(0, 0%, 15%, .1);
-    style(--theme: 'dark'):        hsla(0, 0%, 85%, .1);
-    style(--theme: 'alternative'): hsla(0, 0%, 85%, .1); 
+    style(--theme: 'light'):       hsla(0, 0%, 15%, .1); /* a variabiliser */
+    style(--theme: 'dark'):        hsla(0, 0%, 85%, .1); /* a variabiliser */
+    style(--theme: 'alternative'): hsla(0, 0%, 85%, .1); /* a variabiliser */
     else: #333333
   );
 
+  /* ------------------------------- */
+  /* ALT */
+  /* ------------------------------- */
+
   --color--bg-alt: if(
-    style(--theme: 'light'):       var(--color--bg-5);
-    style(--theme: 'dark'):        var(--color--bg-10);
-    style(--theme: 'alternative'): var(--color--bg-10); 
+    style(--theme: 'light'):       var(--color--bg-5);  /* (0, 0%, 95%) */
+    style(--theme: 'dark'):        var(--color--bg-10); /* (0, 0%, 10%) */
+    style(--theme: 'alternative'): var(--color--bg-10); /* (0, 0%, 10%) */
     else: #333333
   );
   --color--bg-alt--hover: if(
-    style(--theme: 'light'):       var(--color--bg-15);
-    style(--theme: 'dark'):        var(--color--bg-15);
-    style(--theme: 'alternative'): var(--color--bg-15); 
+    style(--theme: 'light'):       var(--color--bg-15); /* (0, 0%, 85%) */
+    style(--theme: 'dark'):        var(--color--bg-15); /* (0, 0%, 15%) */
+    style(--theme: 'alternative'): var(--color--bg-15); /* (0, 0%, 15%) */
     else: #333333
   );
   --color--bg-alt--active: if(
-    style(--theme: 'light'):       var(--color--bg-10);
-    style(--theme: 'dark'):        var(--color--bg-20);
-    style(--theme: 'alternative'): var(--color--bg-20); 
+    style(--theme: 'light'):       var(--color--bg-10); /* (0, 0%, 90%) */
+    style(--theme: 'dark'):        var(--color--bg-20); /* (0, 0%, 20%) */
+    style(--theme: 'alternative'): var(--color--bg-20); /* (0, 0%, 20%) */
     else: #333333
   );
-  --color--outline--alt: hsla(0, 0%, 15%, 33%);
-  --color--bg-alt--alpha:  hsla(0, 0%, 15%, .1);
+  --color--outline--alt: hsla(0, 0%, 15%, 33%); /* a variabiliser */
+  --color--bg-alt--alpha:  hsla(0, 0%, 15%, .1); /* a variabiliser */
+
+  /* =================================================== */
+  /* FOREGROUNDS */
+  /* =================================================== */
+
+  /* ------------------------------- */
+  /* DEFAULT */
+  /* ------------------------------- */
 
   --color--fg-default: if(
-    style(--theme: 'light'):       var(--color--fg-15);
-    style(--theme: 'dark'):        var(--color--fg-15);
-    style(--theme: 'alternative'): var(--color--fg-15); 
+    style(--theme: 'light'):       var(--color--fg-15); /* (0, 0%, 15%) */
+    style(--theme: 'dark'):        var(--color--fg-15); /* (0, 0%, 85%) */
+    style(--theme: 'alternative'): var(--color--fg-15); /* (0, 0%, 85%) */
     else: #333333
   );
   --filter--fg-default: if(
@@ -65,23 +89,30 @@
     else: #333333
   );
   --color--fg-default--hover: if(
-    style(--theme: 'light'):       var(--color--fg-5);
-    style(--theme: 'dark'):        var(--color--fg-5); 
-    style(--theme: 'alternative'): var(--color--fg-5); 
+    style(--theme: 'light'):       var(--color--fg-5); /* (0, 0%,  5%) */
+    style(--theme: 'dark'):        var(--color--fg-5); /* (0, 0%, 95%) */
+    style(--theme: 'alternative'): var(--color--fg-5); /* (0, 0%, 95%) */
     else: #333333
   );
   --color--fg-default--active: if(
-    style(--theme: 'light'):       var(--color--fg-0);
-    style(--theme: 'dark'):        var(--color--fg-0); 
-    style(--theme: 'alternative'): var(--color--fg-0); 
+    style(--theme: 'light'):       var(--color--fg-0); /* (0, 0%,   0%) */
+    style(--theme: 'dark'):        var(--color--fg-0); /* (0, 0%, 100%) */
+    style(--theme: 'alternative'): var(--color--fg-0); /* (0, 0%, 100%) */
     else: #333333
   );
-  --color--outline--fg-default: hsla(0, 0%, 85%, 33%);
-  --color--fg-default--alpha:  hsla(0, 0%, 85%, .1);
+  --color--outline--fg-default: hsla(0, 0%, 85%, 33%); /* a variabiliser */
+  --color--fg-default--alpha:  hsla(0, 0%, 85%, .1);   /* a variabiliser */
+
+  /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  /* FONCTIONAL COLORS */
+  /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
   /* color: #f76e9c; */
 
-  /* ------------ PRIMARY ------------ */
+  /* =================================================== */
+  /* PRIMARY */
+  /* =================================================== */
+
   --color--primary: if(
     style(--theme: 'light'):       hsl(340, 50%, 45%)/* hsl(25, 100%, 36%) */;
     style(--theme: 'dark'):        hsl(340, 90%, 70%); 
@@ -119,7 +150,10 @@
     else: #333333
   );
 
-  /* ------------ SUCCESS ------------ */
+  /* =================================================== */
+  /* SUCCESS */
+  /* =================================================== */
+
   --color--success: if(
     style(--theme: 'light'):       hsl(120, 40%, 35%);
     style(--theme: 'dark'):        hsl(120, 40%, 50%); 
@@ -157,7 +191,10 @@
     else: #333333
   );
 
-  /* ------------ SUCCESS ------------ */
+  /* =================================================== */
+  /* INFO */
+  /* =================================================== */
+
   --color--info: if(
     style(--theme: 'light'):       hsl(220, 60%, 50%);
     style(--theme: 'dark'):        hsl(220, 90%, 70%); 
@@ -194,8 +231,11 @@
     style(--theme: 'alternative'): var(--color--fg-85); 
     else: #333333
   );
+  
+  /* =================================================== */
+  /* ERROR */
+  /* =================================================== */
 
-  /* ------------ ERROR ------------ */
   --color--error: if(
     style(--theme: 'light'):       hsl(0, 48%, 48%);
     style(--theme: 'dark'):        hsl(0, 95%, 65%); 
@@ -233,9 +273,9 @@
     else: #333333
   );
   
-  /* ======================================================= */
+  /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   /* RAW COLORS */
-  /* ======================================================= */
+  /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
   /* Background */
   --color--bg-0:   if(
@@ -494,7 +534,7 @@
   );
 
   /* ======================================================= */
-  /* APPLIED COLORS */
+  /*  */
   /* ======================================================= */
 
   --box-shadow--soft: 0px 3px 10px #0000004f;

@@ -1,3 +1,7 @@
+:root {
+  --font-family--user: 'inter-var'; /* inter-var | open-dyslexic */
+}
+
 /* ==========================
  Inter
 ===========================*/
@@ -10,10 +14,16 @@ Consolas
 ===========================*/
 @font-face { font-family: "consolas"; src: url("../../../medias/fonts/consolas/Consolas.woff2") format("woff2"); }
 
+/* ==========================
+ Inter
+===========================*/
+@font-face { font-family: "open-dyslexic"; src: url("../../../medias/fonts/open-dyslexic/OpenDyslexic-Regular.woff2") format("woff2"); }
+@font-face { font-family: "open-dyslexic-bold"; src: url("../../../medias/fonts/open-dyslexic/OpenDyslexic-Bold.woff2") format("woff2"); }
+
 /* ---------------------------------------------------------------------- */
 
 .lzr { 
-  --font-family--default: 'inter-var', sans-serif;
+  --font-family--default: var(--font-family--user), sans-serif;
   --font-size--default: 16px;
   font-family: var(--font-family--default);
   font-weight: 300;

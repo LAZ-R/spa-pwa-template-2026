@@ -73,7 +73,6 @@ ul {
   align-items: flex-start;
   padding: var(--vertical-padding) var(--horizontal-padding);
   width: 100%;
-  min-height: 100%;
 }
 
 /* Paramètres ============================================================== */
@@ -88,6 +87,29 @@ ul {
   border-bottom: 1px solid var(--color--fg-default);
 }
 
+.drawers-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--color--fg-default);
+
+  .lzr-drawer {
+    --width: if(
+    /* PHONE */ media(width < 767px):  100%;
+    /* TABLET */media(width < 1280px): 100%;
+    /* LAPTOP */media(width < 1920px): calc(50% - 8px);
+    /* DESKTOP */ else:                calc(25% - 4px);
+    );
+
+    width: var(--width);
+  }
+}
+
 .themes-container {
   display: flex;
   flex-direction: column;
@@ -95,7 +117,29 @@ ul {
   align-items: flex-start;
   width: 100%;
   gap: 8px;
+}
 
+.credit-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bottom-block {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 8px;
+  width: 100%; 
+  margin-top: auto;
+
+  .lzr-store-link {
+    padding: 0;
+  }
 }
 
 /* Stockage ================================================================ */

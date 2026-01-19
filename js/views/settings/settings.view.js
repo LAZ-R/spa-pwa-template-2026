@@ -1,4 +1,5 @@
 import { APP_NAME, APP_VERSION } from "../../../app-properties.js";
+import { CREDITS } from "../../data/credits.data.js";
 import { toExternalPath } from "../../router.js";
 import { getSvgIcon } from "../../services/icons.service.js";
 import { updateMenuDom } from "../../services/menu.service.js";
@@ -27,8 +28,9 @@ export function render() {
 
   // Set MAIN layout
   MAIN.innerHTML = `
-  <div class="page-container">
+  <div class="page-container" style="min-height: 100%;">
     ${ isLaptopOrUp ? `<h1>Paramètres</h1>` : ''}
+
     <div class="setting-block">
       <span>Conserver l'écran allumé</span>
       <label class="lzr-switch">
@@ -37,70 +39,86 @@ export function render() {
       </label>
     </div>
 
-    <div class="lzr-drawer lzr-margin-bottom">
-      <div class="tile-header">
-        ${getSvgIcon('palette', 'm')}
-        <div>
-          <span class="header-title">Thème</span>
-        </div>
-        <div class="tile-caret">
-          ${getSvgIcon('chevron-right', 'm', null)}
-        </div>
-        <input type="checkbox">
-      </div>
-      <div class="expandable-wrapper">
-        <div class="expandable-inner">
-          <div class="inner-body">
-            <div id="themesContainer" class="themes-container">
-              <div class="lzr-radio-group">
-                <div class="lzr-radio-raw" onclick="onThemeClick('dark')">
-                  <input type="radio" class="lzr-radio" id="dark" name="theme" value="dark" ${user.PREFERED_THEME == 'dark' ? 'checked' : ''} />
-                  <label for="dark">Sombre</label>
-                </div>
+    <h2>Accessibilité</h2>
 
-                <div class="lzr-radio-raw" onclick="onThemeClick('light')">
-                  <input type="radio" class="lzr-radio" id="light" name="theme" value="light" ${user.PREFERED_THEME == 'light' ? 'checked' : ''} />
-                  <label for="light">Clair</label>
-                </div>
+    <div class="setting-block">
+      <span>Police "Open-Dyslexic"</span>
+      <label class="lzr-switch">
+        <input type="checkbox" onclick="onOpenDyslexicClick(event)" ${user.IS_ACCESSIBLE_FONT ? 'checked' : ''} />
+        <span class="slider"></span>
+      </label>
+    </div>
 
-                <div class="lzr-radio-raw" onclick="onThemeClick('alternative')">
-                  <input type="radio" class="lzr-radio" id="alternative" name="theme" value="alternative" ${user.PREFERED_THEME == 'alternative' ? 'checked' : ''} />
-                  <label for="alternative">Alternatif</label>
+    <div class="drawers-container">
+      <div class="lzr-drawer">
+        <div class="tile-header">
+          ${getSvgIcon('palette', 'm')}
+          <div>
+            <span class="header-title">Thème</span>
+          </div>
+          <div class="tile-caret">
+            ${getSvgIcon('chevron-right', 'm', null)}
+          </div>
+          <input type="checkbox">
+        </div>
+        <div class="expandable-wrapper">
+          <div class="expandable-inner">
+            <div class="inner-body">
+              <div id="themesContainer" class="themes-container">
+                <div class="lzr-radio-group">
+                  <div class="lzr-radio-raw" onclick="onThemeClick('dark')">
+                    <input type="radio" class="lzr-radio" id="dark" name="theme" value="dark" ${user.PREFERED_THEME == 'dark' ? 'checked' : ''} />
+                    <label for="dark">Sombre</label>
+                  </div>
+
+                  <div class="lzr-radio-raw" onclick="onThemeClick('light')">
+                    <input type="radio" class="lzr-radio" id="light" name="theme" value="light" ${user.PREFERED_THEME == 'light' ? 'checked' : ''} />
+                    <label for="light">Clair</label>
+                  </div>
+
+                  <div class="lzr-radio-raw" onclick="onThemeClick('alternative')">
+                    <input type="radio" class="lzr-radio" id="alternative" name="theme" value="alternative" ${user.PREFERED_THEME == 'alternative' ? 'checked' : ''} />
+                    <label for="alternative">Alternatif</label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="lzr-drawer lzr-margin-bottom">
-      <div class="tile-header">
-        ${getSvgIcon('database', 'm')}
-        <div>
-          <span class="header-title">Stockage</span>
+      <div class="lzr-drawer">
+        <div class="tile-header">
+          ${getSvgIcon('database', 'm')}
+          <div>
+            <span class="header-title">Stockage</span>
+          </div>
+          <div class="tile-caret">
+            ${getSvgIcon('chevron-right', 'm', null)}
+          </div>
+          <input type="checkbox">
         </div>
-        <div class="tile-caret">
-          ${getSvgIcon('chevron-right', 'm', null)}
-        </div>
-        <input type="checkbox">
-      </div>
-      <div class="expandable-wrapper">
-        <div class="expandable-inner">
-          <div class="inner-body">
-            ${getStorageDom()}
+        <div class="expandable-wrapper">
+          <div class="expandable-inner">
+            <div class="inner-body">
+              ${getStorageDom()}
+            </div>
           </div>
         </div>
-      </div>
-    </div>  
+      </div>  
+    </div>
+
+    <h2>Credits</h2>
+
+    ${getCreditsDom()}
     
-    <span style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; width: 100%; margin-top: auto;">
-      <span>v${APP_VERSION}</span>
-      <span style="display: flex; justify-content: center; align-items: center; gap: 8px;">
-        <span>Copyright ©2025-${new Date().getFullYear()}</span>
-        <a class="lzr-button lzr-flat lzr-primary" href="https://laz-r.github.io/store/" target="_blank">LAZ-R</a>
-      </span>
-    </span>
+    <div class="bottom-block">
+        <span>${APP_NAME} - v ${APP_VERSION}</span>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 8px;">
+          <span>Copyright ©2025-${new Date().getFullYear()}</span>
+          <a class="lzr-button lzr-flat lzr-primary lzr-store-link" href="https://laz-r.github.io/store/" target="_blank">LAZ-R</a>
+        </div>
+    </div>
   </div>
   `;
 
@@ -128,4 +146,56 @@ export function getStorageDom() {
       <input type="file" class="lzr-button lzr-solid lzr-error" onchange="onImportUserDataClick(event)" accept=".txt" />
     </div>
   `;
+}
+
+export function getCreditsDom() {
+  function getCreditDom(credit) {
+    return `
+      <div class="credit-block">
+        <span><b>${credit.name}</b> by ${credit.creator}</span>
+        <a href="${toExternalPath(credit.link)}" class="lzr-button lzr-flat" style="padding: 0;">${credit.link}</a>
+      </div>
+    `;
+  }
+
+  function getCreditCategoryDom(category) {
+    let str = `
+      <div class="lzr-drawer">
+        <div class="tile-header">
+          <div>
+            <span class="header-title">${category.name}</span>
+          </div>
+          <div class="tile-caret">
+            ${getSvgIcon('chevron-right', 'm', null)}
+          </div>
+          <input type="checkbox">
+        </div>
+        <div class="expandable-wrapper">
+          <div class="expandable-inner">
+            <div class="inner-body">
+    `;
+
+    for (let credit of category.list) {
+      let isLast = category.list.indexOf(credit) == category.list.length - 1;
+      str += `
+        ${getCreditDom(credit)}
+        ${isLast ? '' : `<hr>`}
+      `;
+    }
+
+    str += `
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    return str;
+  }
+
+  let str = '<div class="drawers-container">';
+  for (let category of CREDITS) {
+    str += getCreditCategoryDom(category);
+  }
+  str += '</div>'
+  return str;
 }

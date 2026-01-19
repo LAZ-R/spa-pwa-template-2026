@@ -6,7 +6,10 @@ export function onThemeClick(theme) {
   if (user.PREFERED_THEME != theme) {
     user.PREFERED_THEME = theme;
     setUser(user);
-    document.getElementsByClassName('lzr')[0].style = `--theme: '${user.PREFERED_THEME}';`;
+    document.getElementsByClassName('lzr')[0].style = `
+      --theme: '${user.PREFERED_THEME}';
+      --font-family--user: '${user.IS_ACCESSIBLE_FONT ? 'open-dyslexic' : 'inter-var'}';
+    ';`;
   }
 };
 window.onThemeClick = onThemeClick;
@@ -21,3 +24,16 @@ export function onKeepScreenAwakeClick(event) {
   }
 }
 window.onKeepScreenAwakeClick = onKeepScreenAwakeClick;
+
+export function onOpenDyslexicClick(event) {
+  const isChecked = event.srcElement.checked;
+  let user = getUser();
+  user.IS_ACCESSIBLE_FONT = isChecked;
+  setUser(user);
+
+  document.getElementsByClassName('lzr')[0].style = `
+    --theme: '${user.PREFERED_THEME}';
+    --font-family--user: '${user.IS_ACCESSIBLE_FONT ? 'open-dyslexic' : 'inter-var'}';
+  `;
+}
+window.onOpenDyslexicClick = onOpenDyslexicClick;
