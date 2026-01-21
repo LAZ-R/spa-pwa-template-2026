@@ -1,5 +1,5 @@
 export const APP_NAME = "SPA PWA Template 2026";
-export const APP_VERSION = '0.0.0.25';
+export const APP_VERSION = '0.0.0.26';
 export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0002`;
 
 /* 
@@ -13,6 +13,7 @@ export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0002`;
 
 # CHANGELOG ###############################################
 
+v 0.0.0.26 - rework css file input button
 v 0.0.0.25 - fix path 404 css + fix css settings file input
 v 0.0.0.24 - rework css folders
 v 0.0.0.23 - rework theme alt + rename bg-alt en bg-html + rework wording sur pop up d'install
