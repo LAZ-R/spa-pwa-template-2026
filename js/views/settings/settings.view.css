@@ -49,7 +49,7 @@
     margin-top: 16px;
   }
 
-  .lzr-button, .lzr-button::file-selector-button {
+  input[type="file"] {
     width: 100%;
     height: 64px;
   }
