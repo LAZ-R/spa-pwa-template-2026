@@ -40,6 +40,17 @@
         color: hsl(0, 0%, 66%);
         }
       }
+      .input-tag {
+        color: #fdca78;
+        &::before {
+          content: '<';
+        color: hsl(0, 0%, 66%);
+        }
+        &::after {
+          content: '/>';
+        color: hsl(0, 0%, 66%);
+        }
+      }
       .closing-tag {
         color: #fdca78;
         &::before {

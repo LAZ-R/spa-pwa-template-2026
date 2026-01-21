@@ -49,6 +49,7 @@ export function render() {
           <li><a class="lzr-button lzr-flat" href="#header_block">Header</a></li>
           <li><a class="lzr-button lzr-flat" href="#button_block">Button</a></li>
           <li><a class="lzr-button lzr-flat" href="#link_block">Link button</a></li>
+          <li><a class="lzr-button lzr-flat" href="#file_input_block">File input button</a></li>
           <li><a class="lzr-button lzr-flat" href="#select_block">Select</a></li>
           <li><a class="lzr-button lzr-flat" href="#icon_block">Icône</a></li>
           <li><a class="lzr-button lzr-flat" href="#radio_block">Radio button</a></li>
@@ -260,9 +261,6 @@ export function render() {
         <button class="lzr-button lzr-pill lzr-flat">${getSvgIcon('utensils')}Restauration</button>
       </div>
 
-
-
-
       <hr class="lzr-separator horizontal"> <!-- ##################################################################################### -->
 
       <h2 id="link_block">Link button</h2>
@@ -273,7 +271,7 @@ export function render() {
           <span class="comment">base</span><br>
           <span class="opening-tag">a <span class="tag-attribute">href=</span><span class="quotes">"#"</span> <span class="tag-attribute">class=</span><span class="quotes">"lzr-button"</span></span>link button<span class="closing-tag">a</span><br>
           <br>
-          <span class="comment">lzr-solid</span><br>
+          <span class="comment">solid</span><br>
           <span class="opening-tag">a <span class="tag-attribute">href=</span><span class="quotes">"#"</span> <span class="tag-attribute">class=</span><span class="quotes">"lzr-button lzr-solid"</span></span>solid<span class="closing-tag">a</span><br>
           <br>
           <span class="comment">outlined</span><br>
@@ -353,15 +351,39 @@ export function render() {
         <a href="#" class="lzr-button lzr-flat lzr-primary">link button flat primary</a>
       </div>
 
+      <hr class="lzr-separator horizontal">  <!-- ##################################################################################### -->
 
+      <h2 id="file_input_block">File input button</h2>
 
+      <code class="code lzr-margin-bottom width-100">
+        <div class="code-header">HTML</div>
+        <div class="code-body">
+          <span class="comment">base</span><br>
+          <span class="input-tag">input <span class="tag-attribute">type=</span><span class="quotes">"file"</span> <span class="tag-attribute">accept=</span><span class="quotes">".txt"</span> <span class="tag-attribute">class=</span><span class="quotes">"lzr-button"</span></span><br>
+          <br>
+          <span class="comment">solid</span><br>
+          <span class="input-tag">input <span class="tag-attribute">type=</span><span class="quotes">"file"</span> <span class="tag-attribute">accept=</span><span class="quotes">".txt"</span> <span class="tag-attribute">class=</span><span class="quotes">"lzr-button lzr-solid"</span></span><br>
+          <br>
+          <span class="comment">outlined</span><br>
+          <span class="input-tag">input <span class="tag-attribute">type=</span><span class="quotes">"file"</span> <span class="tag-attribute">accept=</span><span class="quotes">".txt"</span> <span class="tag-attribute">class=</span><span class="quotes">"lzr-button lzr-outlined"</span></span><br>
+          <br>
+          <span class="comment">flat</span><br>
+          <span class="input-tag">input <span class="tag-attribute">type=</span><span class="quotes">"file"</span> <span class="tag-attribute">accept=</span><span class="quotes">".txt"</span> <span class="tag-attribute">class=</span><span class="quotes">"lzr-button lzr-flat"</span></span><br>
+        </div>
+      </code>
 
+      <h3>Base</h3>
+      <h4>Default</h4>
+      <div class="lzr-row-wrap lzr-margin-bottom">
+        <input type="file" class="lzr-button" accept=".txt" />
+      </div>
+      <h4>pill</h4>
+      <div class="lzr-row-wrap lzr-margin-bottom">
+        <input type="file" class="lzr-button lzr-pill" accept=".txt" />
+      </div>
 
-
-
-
-
-
+      <h3>Solid</h3>
+      <h4>Default</h4>
       <div class="lzr-row-wrap lzr-margin-bottom">
         <input type="file" class="lzr-button lzr-solid" accept=".txt" />
         <input type="file" class="lzr-button lzr-solid lzr-primary" accept=".txt" />
@@ -369,7 +391,7 @@ export function render() {
         <input type="file" class="lzr-button lzr-solid lzr-info" accept=".txt" />
         <input type="file" class="lzr-button lzr-solid lzr-error" accept=".txt" />
       </div>
-
+      <h4>pill</h4>
       <div class="lzr-row-wrap lzr-margin-bottom">
         <input type="file" class="lzr-button lzr-pill lzr-solid" accept=".txt" />
         <input type="file" class="lzr-button lzr-pill lzr-solid lzr-primary" accept=".txt" />
@@ -378,6 +400,8 @@ export function render() {
         <input type="file" class="lzr-button lzr-pill lzr-solid lzr-error" accept=".txt" />
       </div>
 
+      <h3>Outlined</h3>
+      <h4>Default</h4>
       <div class="lzr-row-wrap lzr-margin-bottom">
         <input type="file" class="lzr-button lzr-outlined" accept=".txt" />
         <input type="file" class="lzr-button lzr-outlined lzr-primary" accept=".txt" />
@@ -385,7 +409,17 @@ export function render() {
         <input type="file" class="lzr-button lzr-outlined lzr-info" accept=".txt" />
         <input type="file" class="lzr-button lzr-outlined lzr-error" accept=".txt" />
       </div>
+      <h4>pill</h4>
+      <div class="lzr-row-wrap lzr-margin-bottom">
+        <input type="file" class="lzr-button lzr-pill lzr-outlined" accept=".txt" />
+        <input type="file" class="lzr-button lzr-pill lzr-outlined lzr-primary" accept=".txt" />
+        <input type="file" class="lzr-button lzr-pill lzr-outlined lzr-success" accept=".txt" />
+        <input type="file" class="lzr-button lzr-pill lzr-outlined lzr-info" accept=".txt" />
+        <input type="file" class="lzr-button lzr-pill lzr-outlined lzr-error" accept=".txt" />
+      </div>
 
+      <h3>Flat</h3>
+      <h4>Default</h4>
       <div class="lzr-row-wrap lzr-margin-bottom">
         <input type="file" class="lzr-button lzr-flat" accept=".txt" />
         <input type="file" class="lzr-button lzr-flat lzr-primary" accept=".txt" />
@@ -393,27 +427,16 @@ export function render() {
         <input type="file" class="lzr-button lzr-flat lzr-info" accept=".txt" />
         <input type="file" class="lzr-button lzr-flat lzr-error" accept=".txt" />
       </div>
+      <h4>pill</h4>
+      <div class="lzr-row-wrap lzr-margin-bottom">
+        <input type="file" class="lzr-button lzr-pill lzr-flat" accept=".txt" />
+        <input type="file" class="lzr-button lzr-pill lzr-flat lzr-primary" accept=".txt" />
+        <input type="file" class="lzr-button lzr-pill lzr-flat lzr-success" accept=".txt" />
+        <input type="file" class="lzr-button lzr-pill lzr-flat lzr-info" accept=".txt" />
+        <input type="file" class="lzr-button lzr-pill lzr-flat lzr-error" accept=".txt" />
+      </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <h3>Exemples</h3>
 
 
 
@@ -430,7 +453,7 @@ export function render() {
           <span class="indent">00</span><span class="opening-tag">option <span class="tag-attribute">value=</span><span class="quotes">"option2"</span></span>option 2<span class="closing-tag">option</span><br>
           <span class="closing-tag">select</span><br>
           <br>
-          <span class="comment">lzr-solid</span><br>
+          <span class="comment">solid</span><br>
           <span class="opening-tag">select <span class="tag-attribute">class=</span><span class="quotes">"lzr-select lzr-solid"</span></span><br>
           <span class="indent">00</span><span class="opening-tag">option <span class="tag-attribute">value=</span><span class="quotes">"option1"</span><span class="tag-attribute">selected</span></span>option 1<span class="closing-tag">option</span><br>
           <span class="indent">00</span><span class="opening-tag">option <span class="tag-attribute">value=</span><span class="quotes">"option2"</span></span>option 2<span class="closing-tag">option</span><br>

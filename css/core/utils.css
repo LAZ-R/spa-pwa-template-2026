@@ -45,49 +45,41 @@
     } */
   }
 
-  .pwa-install-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: none;
+  .centered-link {
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: hsla(0, 0%, 0%, 0.66);
-    transition: opacity .2s linear;
-    opacity: 0;
-
-    &.exist {
-      display: flex;
-    }
-
-    &.visible {
-      opacity: 1;
-    }
   }
 
-  .pwa-install-box {
+  .spaced-text {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+  }
+
+  .error-bloc {
+    width: 100%;
+    color: var(--color--error);
+  }
+
+  .drawers-container {
+    display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    width: 100%;
     gap: 16px;
-    padding: 16px;
-    background-color: var(--color--bg-default);
-    border-radius: var(--border-radius--default);
-    max-width: calc(100svw - (2*var(--horizontal-padding)));
+    flex-wrap: wrap;
 
-    .title {
-      font-size: 18px;
-      font-weight: 600;
-    }
+    .lzr-drawer {
+      --width: if(
+      /* PHONE */ media(width < 767px):  100%;
+      /* TABLET */media(width < 1280px): 100%;
+      /* LAPTOP */media(width < 1920px): calc(50% - 8px);
+      /* DESKTOP */ else:                calc(25% - 4px);
+      );
 
-    > div {
-      display: flex;
-      margin-left: auto;
-      justify-content: space-between;
-      gap: 16px;
+      width: var(--width);
     }
   }
 }

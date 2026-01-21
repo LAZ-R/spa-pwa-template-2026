@@ -59,16 +59,4 @@ Consolas
   .txt-primary { color: var(--color--primary); }
   .txt-success { color: var(--color--success); }
   .txt-error { color: var(--color--error); }
-
-  .txt-common { color: var(--color--common); }
-  .txt-uncommon { color: var(--color--uncommon); }
-  .txt-rare { color: var(--color--rare); }
-  .txt-legendary { color: var(--color--legendary); }
-
-  .rarity-text {
-    &.Commun { color: var(--color--common); }
-    &.Inhabituel { color: var(--color--uncommon); }
-    &.Rare { color: var(--color--rare); }
-    &.Légendaire { color: var(--color--legendary); }
-  }
 }

@@ -21,4 +21,10 @@
     background-color: gray;
     margin: 16px 0;
   }
+
+  ul {
+    margin: 0;
+    padding-inline-start: 20px;
+    margin-bottom: 16px;
+  }
 }
