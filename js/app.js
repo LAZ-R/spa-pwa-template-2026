@@ -4,7 +4,7 @@ import { getSvgIcon } from "./services/icons.service.js";
 import { setMenuDom } from "./services/menu.service.js";
 import { getUser, setStorage } from "./services/storage.service.js";
 import { installPwa, setAndShowInstallPwaMessage } from "./utils/install-pwa.js";
-import { setHTMLTitle, logAppInfos } from "./utils/UTILS.js";
+import { setHTMLTitle, logAppInfos } from "./utils/misc.js";
 import { requestWakeLock } from "./utils/wakelock.js";
 
 // INITIALIZATION /////////////////////////////////////////////////////////////////////////////////
