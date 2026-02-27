@@ -579,10 +579,10 @@
   );
 
   --height--side-bar: if(
-    /* PHONE */ media(width < 767px):  calc(100svh - var(--height--tab-bar));
-    /* TABLET */media(width < 1280px): 0px;
-    /* LAPTOP */media(width < 1920px): 0px;
-    /* DESKTOP */ else:                0px;
+    /* PHONE */ media(width < 767px):  calc(100svh - var(--height--header) - var(--height--tab-bar));
+    /* TABLET */media(width < 1280px): calc(100svh - var(--height--header) - var(--height--tab-bar));
+    /* LAPTOP */media(width < 1920px): calc(100svh - var(--height--header));
+    /* DESKTOP */ else:                calc(100svh - var(--height--header));
   );
 
   /* ------------------------------------------------------------------------

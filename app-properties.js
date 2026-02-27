@@ -1,5 +1,5 @@
 export const APP_NAME = "SPA PWA Template 2026";
-export const APP_VERSION = '0.0.0.29';
+export const APP_VERSION = '0.0.0.30';
 export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0002`;
 
 /* 
@@ -13,6 +13,7 @@ export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0002`;
 
 # CHANGELOG ###############################################
 
+v 0.0.0.30 - fix sidebar
 v 0.0.0.29 - fix loading avec url params via script dans index.html + mise en place menu "plus" + fix APP_ORIGIN
 v 0.0.0.28 - fix start_url dans manifest
 v 0.0.0.27 - ajout icones + fix drawers + rename UTILS.js en misc.js

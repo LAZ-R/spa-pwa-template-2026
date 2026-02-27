@@ -3,6 +3,8 @@
 // + View Transitions (optionnel)
 // ================================
 
+import { hideSideBar } from './services/menu.service.js';
+
 /**
  * Base path “serveur” sous lequel l’app est servie.
  * 
@@ -126,6 +128,7 @@ export async function renderURL(urlString) {
 
 // Interception centralisée des navigations
 navigation.addEventListener('navigate', (navEvent) => {
+  hideSideBar();
   if (!navEvent.canIntercept) return;      // téléchargements, cross-origin…
   if (navEvent.hashChange) return;         // laisse #ancre au natif si tu veux
   if (navEvent.downloadRequest) return;    // on ne touche pas aux downloads

@@ -2,11 +2,14 @@ import { normalizePath, toExternalPath } from "../router.js";
 import { getSvgIcon } from "./icons.service.js";
 
 export const ENTRIES = [
+  // PRIMARY
   { id: 'homepage' ,route: '/', label: 'Accueil', iconName: 'home', primary: true, },
   { id: 'css-components' ,route: '/css-components', label: 'Style', iconName: 'palette', primary: true, },
   { id: 'demo1' ,route: '/demo1', label: 'Demo 1', iconName: 'circle-check', primary: true, },
-  { id: 'demo2' ,route: '/demo2', label: 'Demo 2', iconName: 'xmark', primary: true, },
-  { id: 'settings' ,route: '/settings', label: 'Paramètres', iconName: 'gear', primary: false, },
+  // SECONDARY
+  { id: 'demo2' ,route: '/demo2', label: 'Demo 2', iconName: 'circle-info', primary: false, },
+  // SETTINGS
+  { id: 'settings' ,route: '/settings', label: 'Paramètres', iconName: 'gear', primary: 'NA', },
 ];
 const TAB_BAR = document.getElementById('tabBar');
 const SIDE_BAR = document.getElementById('sideBar');
