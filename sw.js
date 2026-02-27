@@ -1,4 +1,4 @@
-const version = '0.0.0.28';
+const version = '0.0.0.29';
 const CACHE_NAME = `spa-pwa-template-2026-${version}`;
 
 const APP_SHELL = [

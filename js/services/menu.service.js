@@ -14,6 +14,7 @@ const SIDE_BAR = document.getElementById('sideBar');
 const HEADER_MENU = document.getElementById('headerMenu');
 const HEADER_SETTINGS_NAV = document.getElementById('headerSettingsNav');
 
+let IS_SIDE_BAR_OPENED = false;
 
 export function setMenuDom() {
   // Mobile
@@ -25,14 +26,14 @@ export function setMenuDom() {
   let headerMenuStr = '';
 
   for (let entry of ENTRIES) {
-    if (entry.primary) {
+    if (entry.primary == true) {
       tabBarStr += `
       <a id="${entry.id}TabBarLink" href="${toExternalPath(entry.route)}" class="tab-bar-button">
         ${getSvgIcon(entry.iconName, 'l', 'var(--color--fg-default)')}
         <label>${entry.label}</label>
       </a>`;
       tabBarButtonsCount += 1;
-    } else {
+    } else if (entry.primary == false) {
       sideBarStr += `
       <a href="${toExternalPath(entry.route)}" class="side-bar-button">
         ${getSvgIcon(entry.iconName, 'l', 'var(--color--fg-default)')}
@@ -47,14 +48,19 @@ export function setMenuDom() {
     </a>
     `;
   }
-  /* tabBarStr += `
-  <button class="tab-bar-button">
-    ${getSvgIcon('ellipsis-vertical', 'l', 'var(--color--fg-default)')}
-    <label>Plus</label>
-  </button>`; */
+
+  if (sideBarStr != '') {
+    tabBarStr += `
+    <button id="tabBarPlusButton" class="tab-bar-button" onclick="onPlusButtonClick()">
+      ${getSvgIcon('ellipsis-vertical', 'l', 'var(--color--fg-default)')}
+      <label>Plus</label>
+    </button>`;
+    tabBarButtonsCount += 1;
+  }
+
   TAB_BAR.setAttribute('style', `--buttons-count: ${tabBarButtonsCount/*  + 1 */};`)
   TAB_BAR.innerHTML = tabBarStr;
-  /* SIDE_BAR?.innerHTML = sideBarStr; */
+  SIDE_BAR.innerHTML = sideBarStr;
   HEADER_MENU.innerHTML = headerMenuStr;
 
   HEADER_SETTINGS_NAV.setAttribute('href', toExternalPath('/settings'))
@@ -66,10 +72,12 @@ export function updateMenuDom(entryId = null) {
   // unselect all
   for (let entry of ENTRIES) {
     if (entry.id == entryId) entryObj = entry;
-    if (entry.primary) {
+    if (entry.primary == true) {
       let tabBarButton = document.getElementById(`${entry.id}TabBarLink`);
       tabBarButton.classList.remove('selected');
     }
+    let tabBarSelectedButton = document.getElementById(`tabBarPlusButton`);
+    tabBarSelectedButton.classList.remove('selected');
     let headerMenuButton = document.getElementById(`${entry.id}HeaderMenuLink`);
     headerMenuButton.classList.remove('selected');
     if (entry.id == 'settings') {
@@ -78,8 +86,11 @@ export function updateMenuDom(entryId = null) {
   }
   // add css class to selected
   if (entryId) {
-    if (entryObj.primary) {
+    if (entryObj.primary == true) {
       let tabBarSelectedButton = document.getElementById(`${entryId}TabBarLink`);
+      tabBarSelectedButton.classList.add('selected');
+    } else if (entryObj.primary == false) {
+      let tabBarSelectedButton = document.getElementById(`tabBarPlusButton`);
       tabBarSelectedButton.classList.add('selected');
     }
 
@@ -91,3 +102,45 @@ export function updateMenuDom(entryId = null) {
     }
   }
 }
+
+export function hideSideBar() {
+  let sideBarcontainer = document.getElementById('sideBarContainer');
+  let sideBarVoid = document.getElementById('sideBarVoid');
+  let sideBar = document.getElementById('sideBar');
+
+  sideBar.classList.add('hidden');
+  sideBarVoid.classList.add('hidden');
+  setTimeout(() => {
+    sideBarcontainer.classList.add('hidden');
+    IS_SIDE_BAR_OPENED = false;
+  }, 200);
+}
+
+export function showSideBar() {
+  let sideBarcontainer = document.getElementById('sideBarContainer');
+  let sideBarVoid = document.getElementById('sideBarVoid');
+  let sideBar = document.getElementById('sideBar');
+
+  sideBarcontainer.classList.remove('hidden');
+  setTimeout(() => {
+    sideBarVoid.classList.remove('hidden');
+    sideBar.classList.remove('hidden');
+    IS_SIDE_BAR_OPENED = true;
+  }, 20);
+
+}
+
+export function onSideBarVoidClick() {
+  hideSideBar();
+}
+window.onSideBarVoidClick = onSideBarVoidClick;
+
+export function onPlusButtonClick() {
+  if (IS_SIDE_BAR_OPENED) {
+    hideSideBar();
+  } else {
+    showSideBar();
+  }
+  IS_SIDE_BAR_OPENED = !IS_SIDE_BAR_OPENED;
+}
+window.onPlusButtonClick = onPlusButtonClick;
