@@ -15,6 +15,8 @@ import { hideSideBar } from './services/menu.service.js';
 export const APP_BASE_PATH = new URL('../', import.meta.url).pathname;
 export const APP_ORIGIN = `${location.origin}${APP_BASE_PATH}`;
 
+let currentPageModule = null;
+
 /**
  * Table de routes internes
  * 
@@ -103,10 +105,22 @@ export async function renderURL(urlString) {
     const pageModule = await loadPageModule();
 
     // 5) Le module de page hydrate le DOM
-    const applyDOMUpdates = () => {
+    const applyDOMUpdates = async () => {
       try {
-        pageModule.render(); // peut throw (innerHTML d’une variable undef, etc.)
-        document.getElementById('main')?.focus();
+        // 1) La nouvelle page dessine son DOM
+        await pageModule.render(); // peut throw (innerHTML d’une variable undef, etc.)
+
+        currentPageModule = pageModule;
+
+        // 2) On récupère l'état associé à l'entrée d'historique courante
+        const entryState = navigation.currentEntry.getState();
+
+        // 3) Si cette page sait restaurer un état, on lui donne
+        if (pageModule.restorePageState) {
+          pageModule.restorePageState(entryState);
+        }
+
+        document.getElementById('main')?.focus({ preventScroll: true });
       } catch (err) {
         console.error('[render() error]', err);
         throw err; // rethrow pour que l’échec remonte au handler de navigation
@@ -142,7 +156,16 @@ navigation.addEventListener('navigate', (navEvent) => {
   //    (ex: /autre-repo/ sur GH Pages)
   if (APP_BASE_PATH !== '/' && !dest.pathname.startsWith(APP_BASE_PATH)) return;
 
-  // ✅ OK: on est dans le périmètre de l’app, on intercepte
+  // ✅ OK: on est dans le périmètre de l’app
+
+  // Sauvegarder l'état de la page qu'on quitte
+  if (currentPageModule?.getPageState) {
+    navigation.updateCurrentEntry({
+      state: currentPageModule.getPageState()
+    });
+  }
+
+  // on intercepte
   navEvent.intercept({
     handler: () => renderURL(dest.href),
   });

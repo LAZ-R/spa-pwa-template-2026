@@ -31,9 +31,19 @@ export function render() {
       <p class="lzr-margin-bottom">
         Bienvenue sur mon template personnel de SPA PWA (Single Page Application, Progressive Web App).
       </p>
-      <p class="lzr-margin-bottom">
-        Ici, tout est fait en <span class="lzr-special-tag html"">HTML</span> <span class="lzr-special-tag css"">CSS</span> <span class="lzr-special-tag javascript"">JS</span>.
-      </p>
+      <p>Ici, tout est fait en :</p>
+      <ul>
+        <li>Vanilla <span class="lzr-special-tag html"">HTML</span></li>
+        <li>Vanilla <span class="lzr-special-tag css"">CSS</span></li>
+        <li>Vanilla <span class="lzr-special-tag javascript"">JS</span></li>
+      </ul>
+
+      <p>Ce template utilise les dernières optimisations web proposées par Chromium :</p>
+      <ul>
+        <li>CSS imbriqué avec <strong>if</strong></li>
+        <li><strong>NavigationAPI</strong></li>
+        <li><strong>ViewTransitionAPI</strong></li>
+      </ul>
     </div>
   `;
 

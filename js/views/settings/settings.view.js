@@ -103,6 +103,18 @@ export function render() {
   updateMenuDom('settings');
 }
 
+export function getPageState() {
+  return {
+    scrollTop: MAIN.scrollTop,
+  };
+}
+
+export function restorePageState(state) {
+  if (typeof state?.scrollTop === 'number') {
+    MAIN.scrollTop = state.scrollTop;
+  }
+}
+
 export function getStorageDom() {
 
   function getExportStorageDom() {

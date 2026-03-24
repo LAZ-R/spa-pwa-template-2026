@@ -3,7 +3,7 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)  
 
-Version `0.0.0.30`
+Version `0.0.0.31`
 
 **[Tester la version déployée sur GitHub Pages](https://laz-r.github.io/spa-pwa-template-2026/)**
 
@@ -11,7 +11,8 @@ Version `0.0.0.30`
     
 Utilise les dernières optimisations web proposées par Chromium :
 - CSS imbriqué avec if
-- NavigationAPI et ViewTransitionAPI
+- NavigationAPI
+- ViewTransitionAPI
 
 ---
 
@@ -19,7 +20,7 @@ This is mostly a *proof of concept* so the code here is awfull, I know.
 
 ## Changelog
 
-- v 0.0.0.30 - fix sidebar
+- v 0.0.0.31 - ajout gestion page state pour restore state sur bouton retour + ajout scrollButton + ajout icônes
 
 ---
 

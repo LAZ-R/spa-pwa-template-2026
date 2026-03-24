@@ -11,6 +11,7 @@ const HEADER_ICON_CONTAINER = document.getElementById('headerIconContainer');
 const HEADER_TITLE = document.getElementById('headerTitle');
 const MAIN = document.getElementById('main');
 const FOOTER = document.getElementById('footer');
+let scrollController = null;
 
 const loremIpsum = `
   <p>
@@ -27,14 +28,6 @@ const options = `
 // FUNCTIONS //////////////////////////////////////////////////////////////////////////////////////
 
 export function render() {
-  // Set HEADER layout
-  if (isPhone || isTablet) {
-    HEADER_TITLE.innerHTML = 'Composants CSS';
-  }
-  if (isLaptopOrUp) {
-    HEADER_TITLE.innerHTML = APP_NAME;
-  }
-
   // Set MAIN layout
   MAIN.innerHTML = `
     <div class="page-container">
@@ -46,15 +39,15 @@ export function render() {
       <nav class="lzr-list-menu">
         <span class="menu-title">Sections</span>
         <ul>
-          <li><a class="lzr-button lzr-flat" href="#header_block">Header</a></li>
-          <li><a class="lzr-button lzr-flat" href="#button_block">Button</a></li>
-          <li><a class="lzr-button lzr-flat" href="#link_block">Link button</a></li>
-          <li><a class="lzr-button lzr-flat" href="#file_input_block">File input button</a></li>
-          <li><a class="lzr-button lzr-flat" href="#select_block">Select</a></li>
-          <li><a class="lzr-button lzr-flat" href="#icon_block">Icône</a></li>
-          <li><a class="lzr-button lzr-flat" href="#radio_block">Radio button</a></li>
-          <li><a class="lzr-button lzr-flat" href="#checkbox_block">Checkbox</a></li>
-          <li><a class="lzr-button lzr-flat" href="#drawer_block">Tiroir</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#header_block')}">Header</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#button_block')}">Button</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#link_block')}">Link button</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#file_input_block')}">File input button</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#select_block')}">Select</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#icon_block')}">Icône</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#radio_block')}">Radio button</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#checkbox_block')}">Checkbox</a></li>
+          <li><a class="lzr-button lzr-flat" href="${toExternalPath('/css-components#drawer_block')}">Tiroir</a></li>
         </ul>
       </nav>
 
@@ -1054,13 +1047,73 @@ export function render() {
         </div>
       </div>
     </div>
+    <button id="scrollButton" class="lzr-button lzr-square" onclick="scrollToTop()">${getSvgIcon('angles-up')}</button>
   `;
 
   // Set FOOTER layout
   FOOTER.innerHTML = ``;
 
   updateMenuDom('css-components');
+
+  const scrollButton = document.getElementById('scrollButton');
+
+  // 1) Nettoie l'ancien listener si la view est re-render
+  scrollController?.abort();
+
+  // 2) Nouveau controller pour CE render
+  scrollController = new AbortController();
+
+  // 3) Ajout du listener avec signal
+  MAIN.addEventListener('scroll', () => {
+    if (MAIN.scrollTop > 100) {
+      scrollButton.style.display = 'flex';
+    } else {
+      scrollButton.style.display = 'none';
+    }
+  }, {
+    signal: scrollController.signal
+  });
+
+  // Set HEADER layout
+  if (isPhone || isTablet) {
+    HEADER_TITLE.innerHTML = 'Composants CSS';
+  }
+  if (isLaptopOrUp) {
+    HEADER_TITLE.innerHTML = APP_NAME;
+  }
 }
+
+export function getPageState() {
+  return {
+    scrollTop: MAIN.scrollTop,
+  };
+}
+
+export function restorePageState(state) {
+  if (typeof state?.scrollTop === 'number') {
+    //MAIN.scrollTop = state.scrollTop;
+    MAIN.style.scrollBehavior = 'auto';
+    MAIN.scroll({
+      top: state.scrollTop,
+      left: 0,
+      behavior: "auto",
+    });
+    setTimeout(() => {
+      MAIN.style.scrollBehavior = 'smooth';
+    }, 1000);
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+function scrollToTop() {
+  MAIN.scroll({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+}
+window.scrollToTop = scrollToTop;
 
 function getIconsDom() {
   let str = '';
