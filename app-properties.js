@@ -1,5 +1,5 @@
 export const APP_NAME = "SPA PWA Template 2026";
-export const APP_VERSION = '0.0.0.31';
+export const APP_VERSION = '0.0.0.32';
 export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0002`;
 
 /* 
@@ -13,6 +13,7 @@ export const APP_LOCAL_STORAGE_ID = `spa-pwa-template-2026-0002`;
 
 # CHANGELOG ###############################################
 
+v 0.0.0.32 - update gestion scroll state
 v 0.0.0.31 - ajout gestion page state pour restore state sur bouton retour + ajout scrollButton + ajout icônes
 v 0.0.0.30 - fix sidebar
 v 0.0.0.29 - fix loading avec url params via script dans index.html + mise en place menu "plus" + fix APP_ORIGIN

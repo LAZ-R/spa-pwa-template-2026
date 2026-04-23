@@ -1091,10 +1091,28 @@ export function getPageState() {
 
 export function restorePageState(state) {
   if (typeof state?.scrollTop === 'number') {
-    //MAIN.scrollTop = state.scrollTop;
     MAIN.style.scrollBehavior = 'auto';
     MAIN.scroll({
       top: state.scrollTop,
+      left: 0,
+      behavior: "auto",
+    });
+
+    // Affichage du bouton si scroll conservé
+    const scrollButton = document.getElementById('scrollButton');
+    if (MAIN.scrollTop > 100) {
+      scrollButton.style.display = 'flex';
+    } else {
+      scrollButton.style.display = 'none';
+    }
+    setTimeout(() => {
+      MAIN.style.scrollBehavior = 'smooth';
+    }, 1000);
+  } else {
+    // 🔥 IMPORTANT : reset si pas de state, sinon le scroll se transmet d'un MAIN à l'autre
+    MAIN.style.scrollBehavior = 'auto';
+    MAIN.scroll({
+      top: 0,
       left: 0,
       behavior: "auto",
     });
